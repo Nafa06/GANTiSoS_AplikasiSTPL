@@ -1,0 +1,47 @@
+@startuml CD_STPL
+skinparam classAttributeIconSize 0
+
+class PetugasSPKT {
+  - nrp : String
+  - nama_petugas : String
+  - pangkat : String
+  - password_petugas : String
+  + login() : void
+  + logout() : void
+}
+
+class LaporanHilang {
+  - no_stpl : String
+  - nik_pelapor : String
+  - nama_pelapor : String
+  - kontak : String
+  - jenis_barang : String
+  - ciri_khusus : String
+  - tkp : String
+  - kronologi : String
+  - waktu_kejadian : DateTime
+  - status_pencarian : String
+  - nrp_petugas : String
+  + tambahLaporan() : void
+  + ubahLaporan() : void
+  + hapusLaporan() : void
+  + cetakSTPL() : void
+}
+
+class BarangTemuan {
+  - id_temuan : String
+  - jenis_barang : String
+  - ciri_khusus : String
+  - lokasi_ditemukan : String
+  - waktu_ditemukan : DateTime
+  - nik_penemu : String
+  - nama_penemu : String
+  - status_gudang : String
+  - nrp_petugas : String
+  + tambahTemuan() : void
+  + updateStatus() : void
+}
+
+PetugasSPKT "1" -- "0..*" LaporanHilang : > mencatat
+PetugasSPKT "1" -- "0..*" BarangTemuan : > menerima
+@enduml

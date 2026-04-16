@@ -1,0 +1,28 @@
+@startuml usecase
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Petugas SPKT" as petugas
+
+rectangle "SI-STPL (Sistem Informasi STPL)" {
+  usecase "Login" as UC1
+  usecase "Kelola Laporan Kehilangan" as UC2
+  usecase "Kelola Barang Temuan" as UC3
+  usecase "Cetak Surat STPL" as UC4
+  usecase "Pencocokan Data (Cross-Match)" as UC5
+
+  ' Association
+  petugas -- UC2
+  petugas -- UC3
+
+  ' Include relationships
+  UC2 ..> UC1 : <<include>>
+  UC3 ..> UC1 : <<include>>
+  
+  ' Pencocokan otomatis berjalan saat kelola laporan
+  UC2 ..> UC5 : <<include>> 
+
+  ' Extend relationship
+  UC4 .> UC2 : <<extend>>
+}
+@enduml

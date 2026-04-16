@@ -1,0 +1,29 @@
+@startuml AD_STPL
+|Petugas SPKT|
+start
+:Klik Menu Tambah Laporan;
+
+|Sistem|
+:Menampilkan Form Tambah Laporan;
+
+|Petugas SPKT|
+repeat
+  :Mengisi Detail Laporan\n(NIK, Kronologi, TKP, dll);
+  :Klik Tombol Simpan;
+
+  |Sistem|
+  :Validasi Detail Laporan;
+  
+  if (Valid?) then (yes)
+    :Data STPL Tersimpan ke Database;
+    :Menampilkan Pesan Sukses;
+    |Petugas SPKT|
+    :Mencetak STPL;
+    stop
+  else (no)
+    |Sistem|
+    :Tampilkan Pesan Error\n(Data tidak lengkap);
+    |Petugas SPKT|
+  endif
+repeat while (Kembali Mengisi Data)
+@enduml
