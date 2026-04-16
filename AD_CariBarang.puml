@@ -1,0 +1,28 @@
+@startuml AD_CariBarang
+|Petugas SPKT|
+start
+:Klik Menu Data Barang Temuan;
+
+|Sistem|
+:Menampilkan Halaman Daftar\nBarang Temuan;
+
+|Petugas SPKT|
+repeat
+  :Masukkan Kata Kunci Pencarian\n(Jenis Barang / Ciri Khusus);
+  :Klik Tombol Cari;
+
+  |Sistem|
+  :Mencari Data di Database\n(tb_barang_temuan);
+  
+  if (Data Ditemukan?) then (Ya)
+    :Menampilkan Detail Barang Temuan;
+    stop
+  else (Tidak)
+    :Menampilkan Pesan\n"Data Tidak Ditemukan";
+    |Petugas SPKT|
+  endif
+repeat while (Cari dengan kata kunci lain?) is (Ya) not (Tidak)
+
+:Akhiri Pencarian;
+stop
+@enduml
