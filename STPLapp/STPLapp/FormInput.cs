@@ -33,7 +33,7 @@ namespace STPLapp
             try
             {
                 conn.Open();
-                string query = "INSERT INTO tb_laporan_hilang (no_stpl, nik_pelapor, nama_pelapor, jenis_barang, tanggal, ciri_khusus, tkp, nrp_petugas) " +
+                string query = "INSERT INTO tb_laporan_hilang (no_stpl, nik_pelapor, nama_pelapor, jenis_barang, waktu_kejadian, ciri_khusus, tkp, nrp_petugas) " +
                                "VALUES (@no, @nik, @nama, @barang, @tgl, @ciri, @tkp, @nrp)";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -74,7 +74,7 @@ namespace STPLapp
             {
                 conn.Open();
                 // Query Simpan Data Temuan. SESUAIKAN NAMA TABEL DAN KOLOM DENGAN DATABASEMU!
-                string query = "INSERT INTO tb_barang_temuan (no_temuan, nik_penemu, nama_penemu, jenis_barang, tanggal, ciri_ciri, lokasi_temu, nrp_petugas) " +
+                string query = "INSERT INTO tb_barang_temuan (id_temuan, nik_penemu, nama_penemu, jenis_barang, waktu_kejadian, ciri_ciri, lokasi_temu, nrp_petugas) " +
                                "VALUES (@no, @nik, @nama, @barang, @tgl, @ciri, @lokasi, @nrp)";
                 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
