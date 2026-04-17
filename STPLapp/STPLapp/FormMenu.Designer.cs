@@ -72,6 +72,7 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnInput);
             this.Name = "FormMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.FormMenu_Load);
             this.ResumeLayout(false);
