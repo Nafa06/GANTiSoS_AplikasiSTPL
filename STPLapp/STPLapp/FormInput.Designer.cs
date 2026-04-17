@@ -44,7 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtNikPenemu = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.txtTemuan = new System.Windows.Forms.TextBox();
@@ -59,7 +59,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtPenemu = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txtNikPenemu = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtJenis = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -67,7 +67,7 @@
             this.txtBarang = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.txtNikPenemu.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSimpan
@@ -190,7 +190,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.txtNikPenemu);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -225,32 +225,32 @@
             this.tabPage1.Text = "Laporan Kehilangan";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // txtNikPenemu
+            // tabPage2
             // 
-            this.txtNikPenemu.Controls.Add(this.dateTimePicker2);
-            this.txtNikPenemu.Controls.Add(this.txtTemuan);
-            this.txtNikPenemu.Controls.Add(this.label14);
-            this.txtNikPenemu.Controls.Add(this.btnSimpanNemu);
-            this.txtNikPenemu.Controls.Add(this.textBox12);
-            this.txtNikPenemu.Controls.Add(this.label8);
-            this.txtNikPenemu.Controls.Add(this.label13);
-            this.txtNikPenemu.Controls.Add(this.txtNrpNemu);
-            this.txtNikPenemu.Controls.Add(this.txtBarang);
-            this.txtNikPenemu.Controls.Add(this.txtPenemu);
-            this.txtNikPenemu.Controls.Add(this.label9);
-            this.txtNikPenemu.Controls.Add(this.label12);
-            this.txtNikPenemu.Controls.Add(this.txtLokasi);
-            this.txtNikPenemu.Controls.Add(this.label16);
-            this.txtNikPenemu.Controls.Add(this.label11);
-            this.txtNikPenemu.Controls.Add(this.label10);
-            this.txtNikPenemu.Controls.Add(this.txtCiriciri);
-            this.txtNikPenemu.Location = new System.Drawing.Point(4, 25);
-            this.txtNikPenemu.Name = "txtNikPenemu";
-            this.txtNikPenemu.Padding = new System.Windows.Forms.Padding(3);
-            this.txtNikPenemu.Size = new System.Drawing.Size(344, 387);
-            this.txtNikPenemu.TabIndex = 1;
-            this.txtNikPenemu.Text = "Laporan Temuan";
-            this.txtNikPenemu.UseVisualStyleBackColor = true;
+            this.tabPage2.Controls.Add(this.dateTimePicker2);
+            this.tabPage2.Controls.Add(this.txtTemuan);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.btnSimpanNemu);
+            this.tabPage2.Controls.Add(this.txtNikPenemu);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.txtNrpNemu);
+            this.tabPage2.Controls.Add(this.txtBarang);
+            this.tabPage2.Controls.Add(this.txtPenemu);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.txtLokasi);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.txtCiriciri);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(344, 387);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Laporan Temuan";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker1
             // 
@@ -283,6 +283,7 @@
             this.btnSimpanNemu.TabIndex = 8;
             this.btnSimpanNemu.Text = "Simpan dan Cetak STPL";
             this.btnSimpanNemu.UseVisualStyleBackColor = true;
+            this.btnSimpanNemu.Click += new System.EventHandler(this.btnSimpanNemu_Click);
             // 
             // label8
             // 
@@ -368,12 +369,12 @@
             this.label13.TabIndex = 25;
             this.label13.Text = "Lokasi Ditemukan";
             // 
-            // textBox12
+            // txtNikPenemu
             // 
-            this.textBox12.Location = new System.Drawing.Point(128, 34);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(190, 22);
-            this.textBox12.TabIndex = 1;
+            this.txtNikPenemu.Location = new System.Drawing.Point(128, 34);
+            this.txtNikPenemu.Name = "txtNikPenemu";
+            this.txtNikPenemu.Size = new System.Drawing.Size(190, 22);
+            this.txtNikPenemu.TabIndex = 1;
             // 
             // label14
             // 
@@ -427,8 +428,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.txtNikPenemu.ResumeLayout(false);
-            this.txtNikPenemu.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -451,13 +452,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage txtNikPenemu;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.TextBox txtTemuan;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnSimpanNemu;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox txtNikPenemu;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtNrpNemu;

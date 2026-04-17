@@ -60,5 +60,47 @@ namespace STPLapp
                 conn.Close();
             }
         }
+
+        private void btnSimpanNemu_Click(object sender, EventArgs e)
+        {
+            if (txtTemuan.Text == "" || txtNikPenemu.Text == "" || txtPenemu.Text == "")
+            {
+                MessageBox.Show("Mohon lengkapi data No Temuan, NIK, dan Nama Penemu!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                // Query Simpan Data Temuan. SESUAIKAN NAMA TABEL DAN KOLOM DENGAN DATABASEMU!
+                string query = "INSERT INTO tb_barang_temuan (no_temuan, nik_penemu, nama_penemu, jenis_barang, tanggal, ciri_ciri, lokasi_temu, nrp_petugas) " +
+                               "VALUES (@no, @nik, @nama, @barang, @tgl, @ciri, @lokasi, @nrp)";
+                
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@no", txtTemuan.Text);
+                cmd.Parameters.AddWithValue("@nik", txtNikPenemu.Text);
+                cmd.Parameters.AddWithValue("@nama", txtPenemu.Text);
+                cmd.Parameters.AddWithValue("@barang", txtBarang.Text);
+                cmd.Parameters.AddWithValue("@tgl", dateTimePicker2.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@ciri", txtCiriciri.Text);
+                cmd.Parameters.AddWithValue("@lokasi", txtLokasi.Text);
+                cmd.Parameters.AddWithValue("@nrp", txtNrpNemu.Text);
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Data Temuan berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                // Kosongkan form setelah simpan
+                txtTemuan.Clear(); txtNikPenemu.Clear(); txtPenemu.Clear(); txtBarang.Clear(); txtCiriciri.Clear(); txtLokasi.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal menyimpan data: " + ex.Message, "Error Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
