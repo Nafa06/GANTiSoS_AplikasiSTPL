@@ -423,7 +423,7 @@
             this.btnBack.Location = new System.Drawing.Point(267, 420);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(90, 31);
-            this.btnBack.TabIndex = 8;
+            this.btnBack.TabIndex = 9;
             this.btnBack.Text = "Kembali";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);

@@ -80,7 +80,7 @@
             this.btnDelete.Location = new System.Drawing.Point(960, 423);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(95, 23);
-            this.btnDelete.TabIndex = 6;
+            this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Hapus";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -90,7 +90,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(1161, 423);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(95, 23);
-            this.btnUpdate.TabIndex = 7;
+            this.btnUpdate.TabIndex = 10;
             this.btnUpdate.Text = "Ubah";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -100,7 +100,7 @@
             this.btnSearch.Location = new System.Drawing.Point(387, 48);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(124, 23);
-            this.btnSearch.TabIndex = 8;
+            this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Cari Data";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -110,14 +110,14 @@
             this.txtSearch.Location = new System.Drawing.Point(155, 49);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(226, 22);
-            this.txtSearch.TabIndex = 5;
+            this.txtSearch.TabIndex = 1;
             // 
             // btnBack
             // 
             this.btnBack.Location = new System.Drawing.Point(1198, 495);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(110, 23);
-            this.btnBack.TabIndex = 6;
+            this.btnBack.TabIndex = 11;
             this.btnBack.Text = "Kembali";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
@@ -127,7 +127,7 @@
             this.btnRefresh.Location = new System.Drawing.Point(517, 49);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(110, 23);
-            this.btnRefresh.TabIndex = 6;
+            this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -141,7 +141,7 @@
             this.cmbKategori.Location = new System.Drawing.Point(19, 47);
             this.cmbKategori.Name = "cmbKategori";
             this.cmbKategori.Size = new System.Drawing.Size(130, 24);
-            this.cmbKategori.TabIndex = 11;
+            this.cmbKategori.TabIndex = 0;
             this.cmbKategori.Text = "Jenis Laporan";
             this.cmbKategori.SelectedIndexChanged += new System.EventHandler(this.cmbKategori_SelectedIndexChanged);
             // 
@@ -169,7 +169,7 @@
             this.txtLokasi.Multiline = true;
             this.txtLokasi.Name = "txtLokasi";
             this.txtLokasi.Size = new System.Drawing.Size(190, 57);
-            this.txtLokasi.TabIndex = 24;
+            this.txtLokasi.TabIndex = 6;
             // 
             // label15
             // 
@@ -195,7 +195,7 @@
             this.txtCiri.Multiline = true;
             this.txtCiri.Name = "txtCiri";
             this.txtCiri.Size = new System.Drawing.Size(190, 79);
-            this.txtCiri.TabIndex = 22;
+            this.txtCiri.TabIndex = 5;
             // 
             // label6
             // 
@@ -220,7 +220,7 @@
             this.txtJenis.Location = new System.Drawing.Point(1066, 162);
             this.txtJenis.Name = "txtJenis";
             this.txtJenis.Size = new System.Drawing.Size(190, 22);
-            this.txtJenis.TabIndex = 17;
+            this.txtJenis.TabIndex = 4;
             // 
             // label8
             // 
@@ -295,7 +295,7 @@
             this.cmbStatus.Location = new System.Drawing.Point(1066, 393);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(121, 24);
-            this.cmbStatus.TabIndex = 11;
+            this.cmbStatus.TabIndex = 7;
             this.cmbStatus.Text = "Status Barang";
             // 
             // label2
@@ -312,7 +312,7 @@
             this.btnClear.Location = new System.Drawing.Point(1061, 423);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(95, 23);
-            this.btnClear.TabIndex = 6;
+            this.btnClear.TabIndex = 9;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
