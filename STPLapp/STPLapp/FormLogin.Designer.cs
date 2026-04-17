@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.txtNrp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label = new System.Windows.Forms.Label();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.btnConnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox2
+            // txtPass
             // 
-            this.textBox2.Location = new System.Drawing.Point(207, 194);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(190, 22);
-            this.textBox2.TabIndex = 20;
+            this.txtPass.Location = new System.Drawing.Point(207, 194);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(190, 22);
+            this.txtPass.TabIndex = 1;
             // 
-            // textBox1
+            // txtNrp
             // 
-            this.textBox1.Location = new System.Drawing.Point(207, 166);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 22);
-            this.textBox1.TabIndex = 21;
+            this.txtNrp.Location = new System.Drawing.Point(207, 166);
+            this.txtNrp.Name = "txtNrp";
+            this.txtNrp.Size = new System.Drawing.Size(190, 22);
+            this.txtNrp.TabIndex = 0;
             // 
             // label2
             // 
@@ -58,34 +59,46 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "Password";
             // 
-            // label1
+            // label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(133, 169);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 16);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "NRP";
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(133, 169);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(36, 16);
+            this.label.TabIndex = 18;
+            this.label.Text = "NRP";
             // 
-            // button1
+            // btnLogin
             // 
-            this.button1.Location = new System.Drawing.Point(136, 222);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(261, 34);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLogin.Location = new System.Drawing.Point(267, 222);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(130, 34);
+            this.btnLogin.TabIndex = 3;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(136, 222);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(130, 34);
+            this.btnConnect.TabIndex = 2;
+            this.btnConnect.Text = "Cek Koneksi";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 345);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.txtPass);
+            this.Controls.Add(this.txtNrp);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label);
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Login Page";
@@ -97,11 +110,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.TextBox txtNrp;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnConnect;
     }
 }
 
