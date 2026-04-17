@@ -34,7 +34,6 @@ namespace STPLapp
                 conn.Open();
                 string query = "";
 
-                // Cari di semua kolom (Global Search)
                 if (cmbKategori.Text == "Laporan Hilang")
                 {
                     query = @"SELECT * FROM tb_laporan_hilang 
@@ -59,7 +58,7 @@ namespace STPLapp
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
-                dgvGudang.DataSource = dt; // Masukkan data ke tabel
+                dgvGudang.DataSource = dt;
             }
             catch (Exception ex) { MessageBox.Show("Error Tampil Data: " + ex.Message); }
             finally { conn.Close(); }
@@ -67,66 +66,62 @@ namespace STPLapp
 
         private void cmbKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbStatus.Items.Clear(); // Kosongkan pilihan status
+            cmbStatus.Items.Clear();
 
             if (cmbKategori.Text == "Laporan Hilang")
             {
-                // Isi pilihan status untuk Barang Hilang
                 cmbStatus.Items.Add("Dicari");
-                cmbStatus.Items.Add("Ditemukan");
-                cmbStatus.Items.Add("Selesai");
-
-                // Ubah awalan label
-                lblId.Text = "No STPL: -";
-                lblNik.Text = "NIK Pelapor: -";
-                lblNama.Text = "Nama Pelapor: -";
+                cmbStatus.Items.Add("Tersimpan");
+                lblId.Text = "-";
+                lblNik.Text = "-";
+                lblNama.Text = "-";
             }
             else
             {
-                // Isi pilihan status untuk Barang Temuan
                 cmbStatus.Items.Add("Tersimpan");
-                cmbStatus.Items.Add("Sudah Diambil");
-                cmbStatus.Items.Add("Diserahkan ke Pemilik");
-
-                // Ubah awalan label
-                lblId.Text = "No Temuan: -";
-                lblNik.Text = "NIK Penemu: -";
-                lblNama.Text = "Nama Penemu: -";
+                cmbStatus.Items.Add("Dikembalikan");
+                
+                lblId.Text = "-";
+                lblNik.Text = "-";
+                lblNama.Text = "-";
             }
 
-            BersihkanForm(); // Kosongkan kotak input
-            TampilData();    // Muat ulang tabel
+            BersihkanForm();
+            TampilData(); 
         }
         private void dgvGudang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvGudang.Rows[e.RowIndex];
-                idTerpilih = row.Cells[0].Value.ToString(); // Kunci ID
+                idTerpilih = row.Cells[0].Value.ToString();
 
-                // Lempar data ke Label
                 if (cmbKategori.Text == "Laporan Hilang")
                 {
-                    lblId.Text = "No STPL: " + idTerpilih;
-                    lblNik.Text = "NIK Pelapor: " + row.Cells[1].Value.ToString();
-                    lblNama.Text = "Nama Pelapor: " + row.Cells[2].Value.ToString();
+                    lblId.Text = row.Cells["no_stpl"].Value.ToString();
+                    lblNik.Text = row.Cells["nik_pelapor"].Value.ToString();
+                    lblNama.Text = row.Cells["nama_pelapor"].Value.ToString();
+                    lblTanggal.Text = row.Cells["waktu_kejadian"].Value.ToString();
+                    lblNrp.Text = row.Cells["nrp_petugas"].Value.ToString();
+
+                    txtJenis.Text = row.Cells["jenis_barang"].Value.ToString();
+                    txtCiri.Text = row.Cells["ciri_khusus"].Value.ToString();
+                    txtLokasi.Text = row.Cells["tkp"].Value.ToString();
+                    cmbStatus.Text = row.Cells["status_pencarian"].Value.ToString();
                 }
                 else
                 {
-                    lblId.Text = "No Temuan: " + idTerpilih;
-                    lblNik.Text = "NIK Penemu: " + row.Cells[1].Value.ToString();
-                    lblNama.Text = "Nama Penemu: " + row.Cells[2].Value.ToString();
+                    lblId.Text = row.Cells["id_temuan"].Value.ToString();
+                    lblNik.Text = row.Cells["nik_penemu"].Value.ToString();
+                    lblNama.Text = row.Cells["nama_penemu"].Value.ToString();
+                    lblTanggal.Text = row.Cells["waktu_ditemukan"].Value.ToString();
+                    lblNrp.Text = row.Cells["nrp_petugas"].Value.ToString();
+
+                    txtJenis.Text = row.Cells["jenis_barang"].Value.ToString();
+                    txtCiri.Text = row.Cells["ciri_ciri"].Value.ToString();
+                    txtLokasi.Text = row.Cells["lokasi_ditemukan"].Value.ToString();
+                    cmbStatus.Text = row.Cells["status_gudang"].Value.ToString();
                 }
-
-                // Asumsi urutan kolom: Tanggal = 4, NRP = 7
-                lblTanggal.Text = "Tanggal: " + row.Cells[4].Value.ToString();
-                lblNrp.Text = "NRP Petugas: " + row.Cells[7].Value.ToString();
-
-                // Lempar data ke TextBox untuk diedit (Asumsi: Barang=3, Ciri=5, Lokasi/TKP=6)
-                txtJenis.Text = row.Cells[3].Value.ToString();
-                txtCiri.Text = row.Cells[5].Value.ToString();
-                txtLokasi.Text = row.Cells[6].Value.ToString();
-                cmbStatus.Text = row.Cells[row.Cells.Count - 1].Value.ToString(); // Status
             }
         }
 
@@ -197,20 +192,22 @@ namespace STPLapp
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            BersihkanForm();
-            TampilData();
+            TampilData(txtSearch.Text);
         }
 
         private void BersihkanForm()
         {
+            lblId.Text = "-";
+            lblNik.Text = "-";
+            lblNama.Text = "-";
             txtJenis.Clear();
             txtCiri.Clear();
             txtLokasi.Clear();
             cmbStatus.SelectedIndex = -1;
             idTerpilih = "";
             txtSearch.Clear();
-            lblTanggal.Text = "Tanggal: -";
-            lblNrp.Text = "NRP Petugas: -";
+            lblTanggal.Text = "-";
+            lblNrp.Text = "-";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -224,6 +221,11 @@ namespace STPLapp
         {
             FormMenu menu = new FormMenu();
             menu.Show();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            BersihkanForm();
         }
     }
 }
