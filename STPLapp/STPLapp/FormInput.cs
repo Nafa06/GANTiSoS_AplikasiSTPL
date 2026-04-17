@@ -20,5 +20,45 @@ namespace STPLapp
         {
             InitializeComponent();
         }
+
+        private void btnSimpan_Click(object sender, EventArgs e)
+        {
+            if (txtStpl.Text == "" || txtNik.Text == "" || txtNama.Text == "")
+            {
+                MessageBox.Show("Mohon lengkapi data No STPL, NIK, dan Nama Pelapor!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                string query = "INSERT INTO tb_laporan_hilang (no_stpl, nik_pelapor, nama_pelapor, jenis_barang, tanggal, ciri_khusus, tkp, nrp_petugas) " +
+                               "VALUES (@no, @nik, @nama, @barang, @tgl, @ciri, @tkp, @nrp)";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@no", txtStpl.Text);
+                cmd.Parameters.AddWithValue("@nik", txtNik.Text);
+                cmd.Parameters.AddWithValue("@nama", txtNama.Text);
+                cmd.Parameters.AddWithValue("@barang", txtJenis.Text);
+                cmd.Parameters.AddWithValue("@tgl", dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@ciri", txtCiri.Text);
+                cmd.Parameters.AddWithValue("@tkp", txtTkp.Text);
+                cmd.Parameters.AddWithValue("@nrp", txtNrp.Text);
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Laporan Hilang berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                txtStpl.Clear(); txtNik.Clear(); txtNama.Clear(); txtJenis.Clear(); txtCiri.Clear(); txtTkp.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal menyimpan data: " + ex.Message, "Error Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
