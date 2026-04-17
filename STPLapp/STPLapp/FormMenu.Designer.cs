@@ -31,6 +31,8 @@
             this.btnInput = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.lblHilang = new System.Windows.Forms.Label();
+            this.lblTemu = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnInput
@@ -63,11 +65,31 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // lblHilang
+            // 
+            this.lblHilang.AutoSize = true;
+            this.lblHilang.Location = new System.Drawing.Point(144, 212);
+            this.lblHilang.Name = "lblHilang";
+            this.lblHilang.Size = new System.Drawing.Size(143, 16);
+            this.lblHilang.TabIndex = 3;
+            this.lblHilang.Text = "Total Laporan Hilang: -";
+            // 
+            // lblTemu
+            // 
+            this.lblTemu.AutoSize = true;
+            this.lblTemu.Location = new System.Drawing.Point(144, 237);
+            this.lblTemu.Name = "lblTemu";
+            this.lblTemu.Size = new System.Drawing.Size(148, 16);
+            this.lblTemu.TabIndex = 3;
+            this.lblTemu.Text = "Total Barang Temuan: -";
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 299);
+            this.Controls.Add(this.lblTemu);
+            this.Controls.Add(this.lblHilang);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnInput);
@@ -76,6 +98,7 @@
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.FormMenu_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -84,5 +107,7 @@
         private System.Windows.Forms.Button btnInput;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Label lblHilang;
+        private System.Windows.Forms.Label lblTemu;
     }
 }

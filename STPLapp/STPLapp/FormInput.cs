@@ -76,7 +76,6 @@ namespace STPLapp
             try
             {
                 conn.Open();
-                // Query Simpan Data Temuan. SESUAIKAN NAMA TABEL DAN KOLOM DENGAN DATABASEMU!
                 string query = "INSERT INTO tb_barang_temuan (id_temuan, nik_penemu, nama_penemu, jenis_barang, waktu_ditemukan, ciri_ciri, lokasi_ditemukan, nrp_petugas) " +
                                "VALUES (@no, @nik, @nama, @barang, @tgl, @ciri, @lokasi, @nrp)";
                 
@@ -93,7 +92,6 @@ namespace STPLapp
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Data Temuan berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
-                // Kosongkan form setelah simpan
                 txtTemuan.Clear(); txtNikPenemu.Clear(); txtPenemu.Clear(); txtBarang.Clear(); txtCiriciri.Clear(); txtLokasi.Clear();
             }
             catch (Exception ex)
