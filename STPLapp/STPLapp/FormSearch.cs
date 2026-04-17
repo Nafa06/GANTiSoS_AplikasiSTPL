@@ -112,38 +112,52 @@ namespace STPLapp
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            // --- 1. VALIDASI KOSONG (Syarat Ujian Poin F) ---
             if (idTerpilih == "") { MessageBox.Show("Pilih data di tabel dulu!"); return; }
 
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
+            // Mengecek apakah TextBox Jenis, Lokasi, dan ComboBox Status kosong
+            if (txtJenis.Text == "" || txtLokasi.Text == "" || cmbStatus.Text == "")
             {
-                conn.Open();
-                string query = "";
-
-                if (cmbKategori.Text == "Laporan Hilang")
-                {
-                    query = "UPDATE tb_laporan_hilang SET jenis_barang=@brg, ciri_khusus=@ciri, tkp=@loc, status_pencarian=@stat WHERE no_stpl=@id";
-                }
-                else
-                {
-                    query = "UPDATE tb_barang_temuan SET jenis_barang=@brg, ciri_ciri=@ciri, lokasi_ditemukan=@loc, status_gudang=@stat WHERE id_temuan=@id";
-                }
-
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@brg", txtJenis.Text);
-                cmd.Parameters.AddWithValue("@ciri", txtCiri.Text);
-                cmd.Parameters.AddWithValue("@loc", txtLokasi.Text);
-                cmd.Parameters.AddWithValue("@stat", cmbStatus.Text);
-                cmd.Parameters.AddWithValue("@id", idTerpilih);
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                BersihkanForm();
-                TampilData();
+                MessageBox.Show("Field penting (Jenis Barang, Lokasi, Status) tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            catch (Exception ex) { MessageBox.Show("Gagal update: " + ex.Message); }
-            finally { conn.Close(); }
+
+            // --- 2. KONFIRMASI SEBELUM UBAH DATA (Syarat Ujian Poin F) ---
+            DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin mengubah detail data ini?", "Konfirmasi Ubah", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialog == DialogResult.Yes)
+            {
+                MySqlConnection conn = new MySqlConnection(connectionString);
+                try
+                {
+                    conn.Open();
+                    string query = "";
+
+                    if (cmbKategori.Text == "Laporan Hilang")
+                    {
+                        query = "UPDATE tb_laporan_hilang SET jenis_barang=@brg, ciri_khusus=@ciri, tkp=@loc, status_pencarian=@stat WHERE no_stpl=@id";
+                    }
+                    else
+                    {
+                        query = "UPDATE tb_barang_temuan SET jenis_barang=@brg, ciri_ciri=@ciri, lokasi_ditemukan=@loc, status_gudang=@stat WHERE id_temuan=@id";
+                    }
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@brg", txtJenis.Text);
+                    cmd.Parameters.AddWithValue("@ciri", txtCiri.Text);
+                    cmd.Parameters.AddWithValue("@loc", txtLokasi.Text);
+                    cmd.Parameters.AddWithValue("@stat", cmbStatus.Text);
+                    cmd.Parameters.AddWithValue("@id", idTerpilih);
+
+                    cmd.ExecuteNonQuery(); // Eksekusi UPDATE (Syarat Ujian Poin D)
+                    MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    BersihkanForm();
+                    TampilData();
+                }
+                catch (Exception ex) { MessageBox.Show("Gagal update: " + ex.Message); }
+                finally { conn.Close(); }
+            }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
