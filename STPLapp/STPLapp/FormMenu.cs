@@ -35,5 +35,17 @@ namespace STPLapp
             FormSearch.Show();
             this.Hide();
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin logout?", "Konfirmasi Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialog == DialogResult.Yes)
+            {
+                FormLogin formLogin = new FormLogin();
+                formLogin.Show();
+                this.Hide();
+            }
+        }
     }
 }
