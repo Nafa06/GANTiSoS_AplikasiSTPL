@@ -16,5 +16,17 @@ namespace STPLapp
         {
             InitializeComponent();
         }
+
+        private void FormMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInput_Click(object sender, EventArgs e)
+        {
+            FormInput formInput = new FormInput();
+            formInput.Show();
+            this.Hide();
+        }
     }
 }

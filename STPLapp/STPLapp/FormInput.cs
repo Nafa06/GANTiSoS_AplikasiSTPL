@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace STPLapp
 {
-    public partial class Form2 : Form
+    public partial class FormInput : Form
     {
-        public Form2()
+        public FormInput()
         {
             InitializeComponent();
         }

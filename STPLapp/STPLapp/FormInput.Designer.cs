@@ -1,6 +1,6 @@
 ﻿namespace STPLapp
 {
-    partial class Form2
+    partial class FormInput
     {
         /// <summary>
         /// Required designer variable.
@@ -415,13 +415,13 @@
             this.textBox14.Size = new System.Drawing.Size(190, 22);
             this.textBox14.TabIndex = 30;
             // 
-            // Form2
+            // FormInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 440);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form2";
+            this.Name = "FormInput";
             this.Text = "Input Page";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

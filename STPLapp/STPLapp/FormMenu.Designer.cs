@@ -41,6 +41,7 @@
             this.btnInput.TabIndex = 0;
             this.btnInput.Text = "Input Laporan Baru";
             this.btnInput.UseVisualStyleBackColor = true;
+            this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
             // 
             // btnSearch
             // 
@@ -70,6 +71,7 @@
             this.Controls.Add(this.btnInput);
             this.Name = "FormMenu";
             this.Text = "Menu";
+            this.Load += new System.EventHandler(this.FormMenu_Load);
             this.ResumeLayout(false);
 
         }
