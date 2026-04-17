@@ -28,5 +28,12 @@ namespace STPLapp
             formInput.Show();
             this.Hide();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            FormSearch FormSearch = new FormSearch();
+            FormSearch.Show();
+            this.Hide();
+        }
     }
 }

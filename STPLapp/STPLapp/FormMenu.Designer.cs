@@ -51,6 +51,7 @@
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "Pencarian Data Gudang";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnLogout
             // 
