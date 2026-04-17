@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvGudang = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -38,7 +38,7 @@
             this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtTkp = new System.Windows.Forms.TextBox();
+            this.txtLokasi = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCiri = new System.Windows.Forms.TextBox();
@@ -54,45 +54,48 @@
             this.lblNrp = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGudang)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvGudang
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 81);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(608, 412);
-            this.dataGridView1.TabIndex = 10;
+            this.dgvGudang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGudang.Location = new System.Drawing.Point(19, 81);
+            this.dgvGudang.Name = "dgvGudang";
+            this.dgvGudang.RowHeadersWidth = 51;
+            this.dgvGudang.RowTemplate.Height = 24;
+            this.dgvGudang.Size = new System.Drawing.Size(608, 412);
+            this.dgvGudang.TabIndex = 10;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(747, 49);
+            this.btnDelete.Location = new System.Drawing.Point(641, 426);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(110, 23);
+            this.btnDelete.Size = new System.Drawing.Size(140, 23);
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Hapus";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(632, 49);
+            this.btnUpdate.Location = new System.Drawing.Point(797, 426);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(110, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(140, 23);
             this.btnUpdate.TabIndex = 7;
             this.btnUpdate.Text = "Ubah";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(387, 48);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(109, 23);
+            this.btnSearch.Size = new System.Drawing.Size(124, 23);
             this.btnSearch.TabIndex = 8;
-            this.btnSearch.Text = "Cari No STPL";
+            this.btnSearch.Text = "Cari Data";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSearch
             // 
@@ -109,15 +112,17 @@
             this.btnBack.TabIndex = 6;
             this.btnBack.Text = "Kembali";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(516, 49);
+            this.btnRefresh.Location = new System.Drawing.Point(517, 49);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(110, 23);
             this.btnRefresh.TabIndex = 6;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // cmbKategori
             // 
@@ -130,6 +135,7 @@
             this.cmbKategori.Size = new System.Drawing.Size(130, 24);
             this.cmbKategori.TabIndex = 11;
             this.cmbKategori.Text = "Jenis Laporan";
+            this.cmbKategori.SelectedIndexChanged += new System.EventHandler(this.cmbKategori_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -149,13 +155,13 @@
             this.label5.TabIndex = 23;
             this.label5.Text = "Ciri Khusus";
             // 
-            // txtTkp
+            // txtLokasi
             // 
-            this.txtTkp.Location = new System.Drawing.Point(747, 306);
-            this.txtTkp.Multiline = true;
-            this.txtTkp.Name = "txtTkp";
-            this.txtTkp.Size = new System.Drawing.Size(190, 57);
-            this.txtTkp.TabIndex = 24;
+            this.txtLokasi.Location = new System.Drawing.Point(747, 306);
+            this.txtLokasi.Multiline = true;
+            this.txtLokasi.Name = "txtLokasi";
+            this.txtLokasi.Size = new System.Drawing.Size(190, 57);
+            this.txtLokasi.TabIndex = 24;
             // 
             // label15
             // 
@@ -213,9 +219,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(638, 309);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 16);
+            this.label8.Size = new System.Drawing.Size(47, 16);
             this.label8.TabIndex = 28;
-            this.label8.Text = "TKP";
+            this.label8.Text = "Lokasi";
             // 
             // label9
             // 
@@ -299,7 +305,7 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtTkp);
+            this.Controls.Add(this.txtLokasi);
             this.Controls.Add(this.lblNama);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label15);
@@ -315,7 +321,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.cmbKategori);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvGudang);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnDelete);
@@ -325,7 +331,7 @@
             this.Name = "FormSearch";
             this.Text = "Search Page";
             this.Load += new System.EventHandler(this.FormSearch_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGudang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,7 +339,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvGudang;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSearch;
@@ -343,7 +349,7 @@
         private System.Windows.Forms.ComboBox cmbKategori;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtTkp;
+        private System.Windows.Forms.TextBox txtLokasi;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCiri;
