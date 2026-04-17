@@ -59,6 +59,9 @@ namespace STPLapp
             {
                 conn.Close();
             }
+        FormMenu formMenu = new FormMenu();
+        formMenu.Show();
+        this.Hide();
         }
 
         private void btnSimpanNemu_Click(object sender, EventArgs e)
@@ -74,7 +77,7 @@ namespace STPLapp
             {
                 conn.Open();
                 // Query Simpan Data Temuan. SESUAIKAN NAMA TABEL DAN KOLOM DENGAN DATABASEMU!
-                string query = "INSERT INTO tb_barang_temuan (id_temuan, nik_penemu, nama_penemu, jenis_barang, waktu_kejadian, ciri_ciri, lokasi_temu, nrp_petugas) " +
+                string query = "INSERT INTO tb_barang_temuan (id_temuan, nik_penemu, nama_penemu, jenis_barang, waktu_ditemukan, ciri_ciri, lokasi_ditemukan, nrp_petugas) " +
                                "VALUES (@no, @nik, @nama, @barang, @tgl, @ciri, @lokasi, @nrp)";
                 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -101,6 +104,9 @@ namespace STPLapp
             {
                 conn.Close();
             }
+            FormMenu formMenu = new FormMenu();
+            formMenu.Show();
+            this.Hide();
         }
     }
 }
