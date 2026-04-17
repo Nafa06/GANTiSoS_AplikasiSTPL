@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnSimpan = new System.Windows.Forms.Button();
+            this.txtNrp = new System.Windows.Forms.TextBox();
+            this.txtTkp = new System.Windows.Forms.TextBox();
+            this.txtCiri = new System.Windows.Forms.TextBox();
+            this.txtNama = new System.Windows.Forms.TextBox();
+            this.txtNik = new System.Windows.Forms.TextBox();
+            this.txtStpl = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txtJenis = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.textBox14 = new System.Windows.Forms.TextBox();
@@ -70,58 +70,58 @@
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnSimpan
             // 
-            this.button1.Location = new System.Drawing.Point(134, 322);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 31);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Simpan dan Cetak STPL";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSimpan.Location = new System.Drawing.Point(134, 322);
+            this.btnSimpan.Name = "btnSimpan";
+            this.btnSimpan.Size = new System.Drawing.Size(173, 31);
+            this.btnSimpan.TabIndex = 8;
+            this.btnSimpan.Text = "Simpan dan Cetak STPL";
+            this.btnSimpan.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // txtNrp
             // 
-            this.textBox7.Location = new System.Drawing.Point(117, 294);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(190, 22);
-            this.textBox7.TabIndex = 11;
+            this.txtNrp.Location = new System.Drawing.Point(117, 294);
+            this.txtNrp.Name = "txtNrp";
+            this.txtNrp.Size = new System.Drawing.Size(190, 22);
+            this.txtNrp.TabIndex = 7;
             // 
-            // textBox6
+            // txtTkp
             // 
-            this.textBox6.Location = new System.Drawing.Point(117, 231);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(190, 57);
-            this.textBox6.TabIndex = 12;
+            this.txtTkp.Location = new System.Drawing.Point(117, 231);
+            this.txtTkp.Multiline = true;
+            this.txtTkp.Name = "txtTkp";
+            this.txtTkp.Size = new System.Drawing.Size(190, 57);
+            this.txtTkp.TabIndex = 6;
             // 
-            // textBox5
+            // txtCiri
             // 
-            this.textBox5.Location = new System.Drawing.Point(117, 146);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(190, 79);
-            this.textBox5.TabIndex = 13;
+            this.txtCiri.Location = new System.Drawing.Point(117, 146);
+            this.txtCiri.Multiline = true;
+            this.txtCiri.Name = "txtCiri";
+            this.txtCiri.Size = new System.Drawing.Size(190, 79);
+            this.txtCiri.TabIndex = 5;
             // 
-            // textBox3
+            // txtNama
             // 
-            this.textBox3.Location = new System.Drawing.Point(117, 62);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(190, 22);
-            this.textBox3.TabIndex = 15;
+            this.txtNama.Location = new System.Drawing.Point(117, 62);
+            this.txtNama.Name = "txtNama";
+            this.txtNama.Size = new System.Drawing.Size(190, 22);
+            this.txtNama.TabIndex = 2;
             // 
-            // textBox2
+            // txtNik
             // 
-            this.textBox2.Location = new System.Drawing.Point(117, 34);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(190, 22);
-            this.textBox2.TabIndex = 16;
+            this.txtNik.Location = new System.Drawing.Point(117, 34);
+            this.txtNik.Name = "txtNik";
+            this.txtNik.Size = new System.Drawing.Size(190, 22);
+            this.txtNik.TabIndex = 1;
             // 
-            // textBox1
+            // txtStpl
             // 
-            this.textBox1.Location = new System.Drawing.Point(117, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 22);
-            this.textBox1.TabIndex = 17;
+            this.txtStpl.Location = new System.Drawing.Point(117, 6);
+            this.txtStpl.Name = "txtStpl";
+            this.txtStpl.Size = new System.Drawing.Size(190, 22);
+            this.txtStpl.TabIndex = 0;
             // 
             // label4
             // 
@@ -200,21 +200,21 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dateTimePicker1);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.txtStpl);
+            this.tabPage1.Controls.Add(this.btnSimpan);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.textBox7);
+            this.tabPage1.Controls.Add(this.txtNrp);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.textBox6);
+            this.tabPage1.Controls.Add(this.txtTkp);
             this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.textBox5);
+            this.tabPage1.Controls.Add(this.txtCiri);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.textBox13);
-            this.tabPage1.Controls.Add(this.textBox3);
+            this.tabPage1.Controls.Add(this.txtJenis);
+            this.tabPage1.Controls.Add(this.txtNama);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.txtNik);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
@@ -257,7 +257,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(117, 118);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(114, 22);
-            this.dateTimePicker1.TabIndex = 19;
+            this.dateTimePicker1.TabIndex = 4;
             // 
             // dateTimePicker2
             // 
@@ -383,12 +383,12 @@
             this.label14.TabIndex = 24;
             this.label14.Text = "Tanggal";
             // 
-            // textBox13
+            // txtJenis
             // 
-            this.textBox13.Location = new System.Drawing.Point(117, 90);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(190, 22);
-            this.textBox13.TabIndex = 15;
+            this.txtJenis.Location = new System.Drawing.Point(117, 90);
+            this.txtJenis.Name = "txtJenis";
+            this.txtJenis.Size = new System.Drawing.Size(190, 22);
+            this.txtJenis.TabIndex = 3;
             // 
             // label15
             // 
@@ -434,13 +434,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnSimpan;
+        private System.Windows.Forms.TextBox txtNrp;
+        private System.Windows.Forms.TextBox txtTkp;
+        private System.Windows.Forms.TextBox txtCiri;
+        private System.Windows.Forms.TextBox txtNama;
+        private System.Windows.Forms.TextBox txtNik;
+        private System.Windows.Forms.TextBox txtStpl;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
@@ -468,7 +468,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox txtJenis;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Label label16;
     }
