@@ -28,46 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnInput = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnInput
             // 
-            this.button1.Location = new System.Drawing.Point(147, 147);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 28);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Input Laporan Baru";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnInput.Location = new System.Drawing.Point(147, 147);
+            this.btnInput.Name = "btnInput";
+            this.btnInput.Size = new System.Drawing.Size(160, 28);
+            this.btnInput.TabIndex = 0;
+            this.btnInput.Text = "Input Laporan Baru";
+            this.btnInput.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnSearch
             // 
-            this.button2.Location = new System.Drawing.Point(147, 181);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 28);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Pencarian Data Gudang";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSearch.Location = new System.Drawing.Point(147, 181);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(160, 28);
+            this.btnSearch.TabIndex = 0;
+            this.btnSearch.Text = "Pencarian Data Gudang";
+            this.btnSearch.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnLogout
             // 
-            this.button3.Location = new System.Drawing.Point(368, 254);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 33);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Log Out";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnLogout.Location = new System.Drawing.Point(368, 254);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 33);
+            this.btnLogout.TabIndex = 1;
+            this.btnLogout.Text = "Log Out";
+            this.btnLogout.UseVisualStyleBackColor = true;
             // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 299);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.btnInput);
             this.Name = "FormMenu";
             this.Text = "Menu";
             this.ResumeLayout(false);
@@ -76,8 +76,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnInput;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
