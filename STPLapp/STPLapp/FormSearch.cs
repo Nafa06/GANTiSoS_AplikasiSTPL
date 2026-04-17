@@ -32,31 +32,16 @@ namespace STPLapp
             try
             {
                 conn.Open();
-                string query = "";
-
-                if (cmbKategori.Text == "Laporan Hilang")
-                {
-                    query = @"SELECT * FROM tb_laporan_hilang 
-                              WHERE no_stpl LIKE @key OR nik_pelapor LIKE @key 
-                              OR nama_pelapor LIKE @key OR jenis_barang LIKE @key 
-                              OR ciri_khusus LIKE @key OR tkp LIKE @key 
-                              OR status_pencarian LIKE @key";
-                }
-                else
-                {
-                    query = @"SELECT * FROM tb_barang_temuan 
-                              WHERE id_temuan LIKE @key OR nik_penemu LIKE @key 
-                              OR nama_penemu LIKE @key OR jenis_barang LIKE @key 
-                              OR ciri_ciri LIKE @key OR lokasi_ditemukan LIKE @key 
-                              OR status_gudang LIKE @key";
-                }
+                string query = cmbKategori.Text == "Laporan Hilang" ?
+                    "SELECT * FROM tb_laporan_hilang WHERE no_stpl LIKE @key OR nama_pelapor LIKE @key OR jenis_barang LIKE @key" :
+                    "SELECT * FROM tb_barang_temuan WHERE id_temuan LIKE @key OR nama_penemu LIKE @key OR jenis_barang LIKE @key";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@key", "%" + keyword + "%");
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader reader = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                dt.Load(reader);
 
                 dgvGudang.DataSource = dt;
             }
