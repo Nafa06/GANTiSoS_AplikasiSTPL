@@ -65,6 +65,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtBarang = new System.Windows.Forms.TextBox();
+            this.btnBack = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -195,7 +196,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(352, 416);
+            this.tabControl1.Size = new System.Drawing.Size(352, 384);
             this.tabControl1.TabIndex = 19;
             // 
             // tabPage1
@@ -220,7 +221,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(344, 387);
+            this.tabPage1.Size = new System.Drawing.Size(344, 355);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Laporan Kehilangan";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -247,7 +248,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(344, 387);
+            this.tabPage2.Size = new System.Drawing.Size(344, 355);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Laporan Temuan";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -417,12 +418,23 @@
             this.txtBarang.Size = new System.Drawing.Size(190, 22);
             this.txtBarang.TabIndex = 3;
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(267, 420);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(90, 31);
+            this.btnBack.TabIndex = 8;
+            this.btnBack.Text = "Kembali";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // FormInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 440);
+            this.ClientSize = new System.Drawing.Size(369, 463);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btnBack);
             this.Name = "FormInput";
             this.Text = "Input Page";
             this.tabControl1.ResumeLayout(false);
@@ -473,5 +485,6 @@
         private System.Windows.Forms.TextBox txtJenis;
         private System.Windows.Forms.TextBox txtBarang;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnBack;
     }
 }
