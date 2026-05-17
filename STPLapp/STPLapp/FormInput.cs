@@ -37,7 +37,8 @@ namespace STPLapp
             string.IsNullOrWhiteSpace(txtNama.Text) ||
             string.IsNullOrWhiteSpace(txtJenis.Text) ||
             string.IsNullOrWhiteSpace(txtCiri.Text) ||
-            string.IsNullOrWhiteSpace(txtTkp.Text))
+            string.IsNullOrWhiteSpace(txtTkp.Text) ||
+            string.IsNullOrWhiteSpace(txtNrp.Text))
             {
                 MessageBox.Show("Data tidak boleh kosong, isi form terlebih dahulu!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -86,13 +87,17 @@ namespace STPLapp
 
         private void btnSimpanNemu_Click(object sender, EventArgs e)
         {
-            if (txtTemuan.Text == "" || txtNikPenemu.Text == "" || txtPenemu.Text == "")
+            if (string.IsNullOrWhiteSpace(txtTemuan.Text) ||
+            string.IsNullOrWhiteSpace(txtNikPenemu.Text) ||
+            string.IsNullOrWhiteSpace(txtPenemu.Text) ||
+            string.IsNullOrWhiteSpace(txtBarang.Text) ||
+            string.IsNullOrWhiteSpace(txtCiriciri.Text) ||
+            string.IsNullOrWhiteSpace(txtLokasi.Text) ||
+            string.IsNullOrWhiteSpace(txtNrpNemu.Text))
             {
-                MessageBox.Show("Mohon lengkapi data No Temuan, NIK, dan Nama Penemu!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Data tidak boleh kosong, isi form terlebih dahulu!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-
 
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
