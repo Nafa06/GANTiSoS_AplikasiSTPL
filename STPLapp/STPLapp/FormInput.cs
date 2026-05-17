@@ -21,6 +21,15 @@ namespace STPLapp
             InitializeComponent();
         }
 
+        private void FormInput_Load(object sender, EventArgs e)
+        {
+            dateTimePicker1.MaxDate = DateTime.Now;
+            dateTimePicker2.MaxDate = DateTime.Now;
+
+            dateTimePicker1.MinDate = DateTime.Now.AddYears(-5);
+            dateTimePicker2.MinDate = DateTime.Now.AddYears(-5);
+        }
+
         private void btnSimpan_Click(object sender, EventArgs e)
         {
             if (txtStpl.Text == "" || txtNik.Text == "" || txtNama.Text == "")
@@ -72,6 +81,8 @@ namespace STPLapp
                 return;
             }
 
+
+
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
@@ -88,6 +99,8 @@ namespace STPLapp
                 cmd.Parameters.AddWithValue("@ciri", txtCiriciri.Text);
                 cmd.Parameters.AddWithValue("@lokasi", txtLokasi.Text);
                 cmd.Parameters.AddWithValue("@nrp", txtNrpNemu.Text);
+
+
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Data Temuan berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);

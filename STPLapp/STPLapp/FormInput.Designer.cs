@@ -44,27 +44,27 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtJenis = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.txtTemuan = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.btnSimpanNemu = new System.Windows.Forms.Button();
+            this.txtNikPenemu = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.txtNrpNemu = new System.Windows.Forms.TextBox();
+            this.txtBarang = new System.Windows.Forms.TextBox();
+            this.txtPenemu = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.txtLokasi = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtCiriciri = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtPenemu = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtNikPenemu = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtJenis = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtBarang = new System.Windows.Forms.TextBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -226,6 +226,30 @@
             this.tabPage1.Text = "Laporan Kehilangan";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(117, 118);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(114, 22);
+            this.dateTimePicker1.TabIndex = 4;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(8, 93);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(86, 16);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "Jenis Barang";
+            // 
+            // txtJenis
+            // 
+            this.txtJenis.Location = new System.Drawing.Point(117, 90);
+            this.txtJenis.Name = "txtJenis";
+            this.txtJenis.Size = new System.Drawing.Size(190, 22);
+            this.txtJenis.TabIndex = 3;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dateTimePicker2);
@@ -253,14 +277,6 @@
             this.tabPage2.Text = "Laporan Temuan";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(117, 118);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(114, 22);
-            this.dateTimePicker1.TabIndex = 4;
-            // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -276,6 +292,15 @@
             this.txtTemuan.Size = new System.Drawing.Size(190, 22);
             this.txtTemuan.TabIndex = 0;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 121);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(58, 16);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "Tanggal";
+            // 
             // btnSimpanNemu
             // 
             this.btnSimpanNemu.Location = new System.Drawing.Point(145, 322);
@@ -286,6 +311,13 @@
             this.btnSimpanNemu.UseVisualStyleBackColor = true;
             this.btnSimpanNemu.Click += new System.EventHandler(this.btnSimpanNemu_Click);
             // 
+            // txtNikPenemu
+            // 
+            this.txtNikPenemu.Location = new System.Drawing.Point(128, 34);
+            this.txtNikPenemu.Name = "txtNikPenemu";
+            this.txtNikPenemu.Size = new System.Drawing.Size(190, 22);
+            this.txtNikPenemu.TabIndex = 1;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -295,12 +327,35 @@
             this.label8.TabIndex = 23;
             this.label8.Text = "No Temuan";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(10, 234);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(114, 16);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Lokasi Ditemukan";
+            // 
             // txtNrpNemu
             // 
             this.txtNrpNemu.Location = new System.Drawing.Point(128, 294);
             this.txtNrpNemu.Name = "txtNrpNemu";
             this.txtNrpNemu.Size = new System.Drawing.Size(190, 22);
             this.txtNrpNemu.TabIndex = 7;
+            // 
+            // txtBarang
+            // 
+            this.txtBarang.Location = new System.Drawing.Point(128, 90);
+            this.txtBarang.Name = "txtBarang";
+            this.txtBarang.Size = new System.Drawing.Size(190, 22);
+            this.txtBarang.TabIndex = 3;
+            // 
+            // txtPenemu
+            // 
+            this.txtPenemu.Location = new System.Drawing.Point(128, 62);
+            this.txtPenemu.Name = "txtPenemu";
+            this.txtPenemu.Size = new System.Drawing.Size(190, 22);
+            this.txtPenemu.TabIndex = 2;
             // 
             // label9
             // 
@@ -311,6 +366,15 @@
             this.label9.TabIndex = 22;
             this.label9.Text = "Ciri-ciri";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(10, 37);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 16);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "NIK Penemu";
+            // 
             // txtLokasi
             // 
             this.txtLokasi.Location = new System.Drawing.Point(128, 231);
@@ -318,6 +382,24 @@
             this.txtLokasi.Name = "txtLokasi";
             this.txtLokasi.Size = new System.Drawing.Size(190, 57);
             this.txtLokasi.TabIndex = 6;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(10, 93);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(86, 16);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Jenis Barang";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(10, 297);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(89, 16);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "NRP Petugas";
             // 
             // label10
             // 
@@ -335,88 +417,6 @@
             this.txtCiriciri.Name = "txtCiriciri";
             this.txtCiriciri.Size = new System.Drawing.Size(190, 79);
             this.txtCiriciri.TabIndex = 5;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(10, 297);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(89, 16);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "NRP Petugas";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(10, 37);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(81, 16);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "NIK Penemu";
-            // 
-            // txtPenemu
-            // 
-            this.txtPenemu.Location = new System.Drawing.Point(128, 62);
-            this.txtPenemu.Name = "txtPenemu";
-            this.txtPenemu.Size = new System.Drawing.Size(190, 22);
-            this.txtPenemu.TabIndex = 2;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(10, 234);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(114, 16);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "Lokasi Ditemukan";
-            // 
-            // txtNikPenemu
-            // 
-            this.txtNikPenemu.Location = new System.Drawing.Point(128, 34);
-            this.txtNikPenemu.Name = "txtNikPenemu";
-            this.txtNikPenemu.Size = new System.Drawing.Size(190, 22);
-            this.txtNikPenemu.TabIndex = 1;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 121);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(58, 16);
-            this.label14.TabIndex = 24;
-            this.label14.Text = "Tanggal";
-            // 
-            // txtJenis
-            // 
-            this.txtJenis.Location = new System.Drawing.Point(117, 90);
-            this.txtJenis.Name = "txtJenis";
-            this.txtJenis.Size = new System.Drawing.Size(190, 22);
-            this.txtJenis.TabIndex = 3;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 93);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(86, 16);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "Jenis Barang";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(10, 93);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(86, 16);
-            this.label16.TabIndex = 21;
-            this.label16.Text = "Jenis Barang";
-            // 
-            // txtBarang
-            // 
-            this.txtBarang.Location = new System.Drawing.Point(128, 90);
-            this.txtBarang.Name = "txtBarang";
-            this.txtBarang.Size = new System.Drawing.Size(190, 22);
-            this.txtBarang.TabIndex = 3;
             // 
             // btnBack
             // 
@@ -438,6 +438,7 @@
             this.Name = "FormInput";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Input Page";
+            this.Load += new System.EventHandler(this.FormInput_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
