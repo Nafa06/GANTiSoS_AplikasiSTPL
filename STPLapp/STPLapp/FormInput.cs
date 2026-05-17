@@ -105,6 +105,12 @@ namespace STPLapp
                 return;
             }
 
+            if (txtPenemu.Text.Any(char.IsDigit))
+            {
+                MessageBox.Show("Nama Penemu tidak boleh mengandung angka!", "Input Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
