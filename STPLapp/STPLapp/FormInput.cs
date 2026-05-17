@@ -67,21 +67,22 @@ namespace STPLapp
             try
             {
                 conn.Open();
-                string query = "INSERT INTO tb_laporan_hilang (no_stpl, nik_pelapor, nama_pelapor, jenis_barang, waktu_kejadian, ciri_khusus, tkp, nrp_petugas) " +
-                               "VALUES (@no, @nik, @nama, @barang, @tgl, @ciri, @tkp, @nrp)";
 
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@no", txtStpl.Text);
-                cmd.Parameters.AddWithValue("@nik", txtNik.Text);
-                cmd.Parameters.AddWithValue("@nama", txtNama.Text);
-                cmd.Parameters.AddWithValue("@barang", txtJenis.Text);
-                cmd.Parameters.AddWithValue("@tgl", dateTimePicker1.Value.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@ciri", txtCiri.Text);
-                cmd.Parameters.AddWithValue("@tkp", txtTkp.Text);
-                cmd.Parameters.AddWithValue("@nrp", txtNrp.Text);
+                MySqlCommand cmd = new MySqlCommand("SP_InsertLaporanHilang", conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@p_no_stpl", txtStpl.Text);
+                cmd.Parameters.AddWithValue("@p_nik_pelapor", txtNik.Text);
+                cmd.Parameters.AddWithValue("@p_nama_pelapor", txtNama.Text);
+                cmd.Parameters.AddWithValue("@p_jenis_barang", txtJenis.Text);
+                cmd.Parameters.AddWithValue("@p_waktu_kejadian", dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@p_ciri_khusus", txtCiri.Text);
+                cmd.Parameters.AddWithValue("@p_tkp", txtTkp.Text);
+                cmd.Parameters.AddWithValue("@p_nrp_petugas", txtNrp.Text);
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Laporan Hilang berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Laporan berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 txtStpl.Clear(); txtNik.Clear(); txtNama.Clear(); txtJenis.Clear(); txtCiri.Clear(); txtTkp.Clear();
 
@@ -91,7 +92,7 @@ namespace STPLapp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal menyimpan data: " + ex.Message, "Error Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Gagal menyimpan data via SP: " + ex.Message, "Error Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
