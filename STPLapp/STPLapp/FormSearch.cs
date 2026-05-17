@@ -177,7 +177,6 @@ namespace STPLapp
                 }
                 catch (Exception ex) { MessageBox.Show("Gagal update via SP: " + ex.Message); }
                 finally { conn.Close(); }
-
             }
         }
 
@@ -252,6 +251,16 @@ namespace STPLapp
         private void btnClear_Click(object sender, EventArgs e)
         {
             BersihkanForm();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+          
         }
     }
 }
