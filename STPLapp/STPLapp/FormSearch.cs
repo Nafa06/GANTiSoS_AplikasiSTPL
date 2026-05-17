@@ -135,49 +135,44 @@ namespace STPLapp
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (idTerpilih == "") { MessageBox.Show("Pilih data di tabel dulu!"); return; }
-
-            if (txtJenis.Text == "" || txtLokasi.Text == "" || cmbStatus.Text == "")
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
             {
-                MessageBox.Show("Field penting (Jenis Barang, Lokasi, Status) tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.StoredProcedure;
 
-            DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin mengubah detail data ini?", "Konfirmasi Ubah", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (dialog == DialogResult.Yes)
-            {
-                MySqlConnection conn = new MySqlConnection(connectionString);
-                try
+                if (cmbKategori.Text == "Laporan Hilang")
                 {
-                    conn.Open();
-                    string query = "";
+                    cmd.CommandText = "SP_UpdateStatusLaporan";
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    if (cmbKategori.Text == "Laporan Hilang")
-                    {
-                        query = "UPDATE tb_laporan_hilang SET jenis_barang=@brg, ciri_khusus=@ciri, tkp=@loc, status_pencarian=@stat WHERE no_stpl=@id";
-                    }
-                    else
-                    {
-                        query = "UPDATE tb_barang_temuan SET jenis_barang=@brg, ciri_ciri=@ciri, lokasi_ditemukan=@loc, status_gudang=@stat WHERE id_temuan=@id";
-                    }
-
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("p_no_stpl", idTerpilih);
+                    cmd.Parameters.AddWithValue("p_jenis_barang", txtJenis.Text);
+                    cmd.Parameters.AddWithValue("p_ciri_khusus", txtCiri.Text);
+                    cmd.Parameters.AddWithValue("p_tkp", txtLokasi.Text);
+                    cmd.Parameters.AddWithValue("p_status", cmbStatus.Text);
+                }
+                else
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "UPDATE tb_barang_temuan SET jenis_barang=@brg, ciri_ciri=@ciri, lokasi_ditemukan=@loc, status_gudang=@stat WHERE id_temuan=@id";
                     cmd.Parameters.AddWithValue("@brg", txtJenis.Text);
                     cmd.Parameters.AddWithValue("@ciri", txtCiri.Text);
                     cmd.Parameters.AddWithValue("@loc", txtLokasi.Text);
                     cmd.Parameters.AddWithValue("@stat", cmbStatus.Text);
                     cmd.Parameters.AddWithValue("@id", idTerpilih);
-
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    BersihkanForm();
-                    TampilData();
                 }
-                catch (Exception ex) { MessageBox.Show("Gagal update: " + ex.Message); }
-                finally { conn.Close(); }
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                BersihkanForm();
+                TampilData();
             }
+            catch (Exception ex) { MessageBox.Show("Gagal update via SP: " + ex.Message); }
+            finally { conn.Close(); }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
