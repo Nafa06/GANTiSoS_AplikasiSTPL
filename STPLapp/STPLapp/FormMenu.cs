@@ -16,6 +16,14 @@ namespace STPLapp
         string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; " +
             "Password = 21914113";
 
+        private string nrpPetugas;
+
+        public FormMenu(string nrp)
+        {
+            InitializeComponent();
+            this.nrpPetugas = nrp;
+        }
+
         public FormMenu()
         {
             InitializeComponent();
@@ -57,7 +65,7 @@ namespace STPLapp
 
         private void btnInput_Click(object sender, EventArgs e)
         {
-            FormInput formInput = new FormInput();
+            FormInput formInput = new FormInput(nrpPetugas); 
             formInput.Show();
             this.Hide();
         }

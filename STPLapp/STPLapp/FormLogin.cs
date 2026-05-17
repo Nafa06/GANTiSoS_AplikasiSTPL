@@ -69,9 +69,10 @@ namespace STPLapp
                     string namaPetugas = reader["nama_petugas"].ToString();
                     MessageBox.Show("Login Berhasil! Selamat bertugas, " + namaPetugas, "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    FormMenu menuUtama = new FormMenu();
-                    menuUtama.Show();
+                    string nrpDariLogin = txtNrp.Text;
 
+                    FormMenu formMenu = new FormMenu(nrpDariLogin);
+                    formMenu.Show();
                     this.Hide();
                 }
                 else
