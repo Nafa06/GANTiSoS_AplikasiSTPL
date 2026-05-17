@@ -135,44 +135,50 @@ namespace STPLapp
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandType = CommandType.StoredProcedure;
+            DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin mengubah detail data ini?", "Konfirmasi Ubah", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (cmbKategori.Text == "Laporan Hilang")
+            if (dialog == DialogResult.Yes)
+            {
+                MySqlConnection conn = new MySqlConnection(connectionString);
+                try
                 {
-                    cmd.CommandText = "SP_UpdateStatusLaporan";
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("p_no_stpl", idTerpilih);
-                    cmd.Parameters.AddWithValue("p_jenis_barang", txtJenis.Text);
-                    cmd.Parameters.AddWithValue("p_ciri_khusus", txtCiri.Text);
-                    cmd.Parameters.AddWithValue("p_tkp", txtLokasi.Text);
-                    cmd.Parameters.AddWithValue("p_status", cmbStatus.Text);
-                }
-                else
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "UPDATE tb_barang_temuan SET jenis_barang=@brg, ciri_ciri=@ciri, lokasi_ditemukan=@loc, status_gudang=@stat WHERE id_temuan=@id";
-                    cmd.Parameters.AddWithValue("@brg", txtJenis.Text);
-                    cmd.Parameters.AddWithValue("@ciri", txtCiri.Text);
-                    cmd.Parameters.AddWithValue("@loc", txtLokasi.Text);
-                    cmd.Parameters.AddWithValue("@stat", cmbStatus.Text);
-                    cmd.Parameters.AddWithValue("@id", idTerpilih);
-                }
+                    if (cmbKategori.Text == "Laporan Hilang")
+                    {
+                        cmd.CommandText = "SP_UpdateStatusLaporan";
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cmd.Parameters.AddWithValue("p_no_stpl", idTerpilih);
+                        cmd.Parameters.AddWithValue("p_jenis_barang", txtJenis.Text);
+                        cmd.Parameters.AddWithValue("p_ciri_khusus", txtCiri.Text);
+                        cmd.Parameters.AddWithValue("p_tkp", txtLokasi.Text);
+                        cmd.Parameters.AddWithValue("p_status", cmbStatus.Text);
+                    }
+                    else
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "UPDATE tb_barang_temuan SET jenis_barang=@brg, ciri_ciri=@ciri, lokasi_ditemukan=@loc, status_gudang=@stat WHERE id_temuan=@id";
+                        cmd.Parameters.AddWithValue("@brg", txtJenis.Text);
+                        cmd.Parameters.AddWithValue("@ciri", txtCiri.Text);
+                        cmd.Parameters.AddWithValue("@loc", txtLokasi.Text);
+                        cmd.Parameters.AddWithValue("@stat", cmbStatus.Text);
+                        cmd.Parameters.AddWithValue("@id", idTerpilih);
+                    }
 
-                BersihkanForm();
-                TampilData();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    BersihkanForm();
+                    TampilData();
+                }
+                catch (Exception ex) { MessageBox.Show("Gagal update via SP: " + ex.Message); }
+                finally { conn.Close(); }
+
             }
-            catch (Exception ex) { MessageBox.Show("Gagal update via SP: " + ex.Message); }
-            finally { conn.Close(); }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
