@@ -183,34 +183,39 @@ namespace STPLapp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
+            DialogResult dialog = MessageBox.Show("Yakin mau hapus data " + idTerpilih + "?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dialog == DialogResult.Yes)
             {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = conn;
-
-                if (cmbKategori.Text == "Laporan Hilang")
+                MySqlConnection conn = new MySqlConnection(connectionString);
+                try
                 {
-                    cmd.CommandText = "SP_DeleteLaporanHilang";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@p_no_stpl", idTerpilih);
-                }
-                else
-                {
-                    cmd.CommandText = "DELETE FROM tb_barang_temuan WHERE id_temuan=@id";
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@id", idTerpilih);
-                }
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = conn;
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Data berhasil dihapus dari sistem!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (cmbKategori.Text == "Laporan Hilang")
+                    {
+                        cmd.CommandText = "SP_DeleteLaporanHilang";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_no_stpl", idTerpilih);
+                    }
+                    else
+                    {
+                        cmd.CommandText = "DELETE FROM tb_barang_temuan WHERE id_temuan=@id";
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@id", idTerpilih);
+                    }
 
-                BersihkanForm();
-                TampilData();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Data berhasil dihapus dari sistem!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    BersihkanForm();
+                    TampilData();
+                }
+                catch (Exception ex) { MessageBox.Show("Gagal hapus: " + ex.Message); }
+                finally { conn.Close(); }
             }
-            catch (Exception ex) { MessageBox.Show("Gagal hapus: " + ex.Message); }
-            finally { conn.Close(); }
         }
 
         private void btnSearch_Click(object sender, EventArgs e) { TampilData(txtSearch.Text); }
