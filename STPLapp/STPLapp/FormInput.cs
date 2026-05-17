@@ -32,9 +32,14 @@ namespace STPLapp
 
         private void btnSimpan_Click(object sender, EventArgs e)
         {
-            if (txtStpl.Text == "" || txtNik.Text == "" || txtNama.Text == "")
+            if (string.IsNullOrWhiteSpace(txtStpl.Text) ||
+            string.IsNullOrWhiteSpace(txtNik.Text) ||
+            string.IsNullOrWhiteSpace(txtNama.Text) ||
+            string.IsNullOrWhiteSpace(txtJenis.Text) ||
+            string.IsNullOrWhiteSpace(txtCiri.Text) ||
+            string.IsNullOrWhiteSpace(txtTkp.Text))
             {
-                MessageBox.Show("Mohon lengkapi data No STPL, NIK, dan Nama Pelapor!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Data tidak boleh kosong, isi form terlebih dahulu!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
