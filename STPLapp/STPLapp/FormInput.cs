@@ -43,6 +43,12 @@ namespace STPLapp
                 return;
             }
 
+            if (txtNik.Text.Length != 16 || !txtNik.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("NIK harus terdiri dari 16 digit angka.", "Input Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
