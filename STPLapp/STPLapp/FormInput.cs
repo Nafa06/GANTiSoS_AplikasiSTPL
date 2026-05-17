@@ -50,6 +50,12 @@ namespace STPLapp
                 return;
             }
 
+            if (txtNama.Text.Any(char.IsDigit))
+            {
+                MessageBox.Show("Nama Pelapor tidak boleh mengandung angka!", "Input Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
