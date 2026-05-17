@@ -66,6 +66,7 @@ namespace STPLapp
 
                 bindingSourceGudang.DataSource = dt;
                 dgvGudang.DataSource = bindingSourceGudang;
+                bindingNavigator1.BindingSource = bindingSourceGudang;
             }
             catch (Exception ex)
             {
