@@ -291,7 +291,12 @@ namespace STPLapp
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-          
+            txtSearch.Clear();
+
+            TampilData("");
+
+            MessageBox.Show("Data berhasil di reset.", "System Restored", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }
