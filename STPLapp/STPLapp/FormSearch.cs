@@ -13,9 +13,18 @@ namespace STPLapp
 {
     public partial class FormSearch : Form
     {
-        string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; " +
-            "Password = 21914113";
+        string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; Password = 21914113";
         string idTerpilih = "";
+        private string nrpPetugas; 
+
+        private BindingSource bindingSourceGudang = new BindingSource();
+
+        public FormSearch(string nrp)
+        {
+            InitializeComponent();
+            this.nrpPetugas = nrp;
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
 
         public FormSearch()
         {
@@ -24,29 +33,48 @@ namespace STPLapp
 
         private void FormSearch_Load(object sender, EventArgs e)
         {
-            cmbKategori.SelectedIndex = 0;
+            if (cmbKategori.Items.Count > 0 && cmbKategori.SelectedIndex == -1)
+            {
+                cmbKategori.SelectedIndex = 0;
+            }
+            TampilData();
         }
+
         private void TampilData(string keyword = "")
         {
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
                 conn.Open();
-                string query = cmbKategori.Text == "Laporan Hilang" ?
-                    "SELECT * FROM tb_laporan_hilang WHERE no_stpl LIKE @key OR nama_pelapor LIKE @key OR jenis_barang LIKE @key" :
-                    "SELECT * FROM tb_barang_temuan WHERE id_temuan LIKE @key OR nama_penemu LIKE @key OR jenis_barang LIKE @key";
+                string query = "";
+
+                if (cmbKategori.Text == "Laporan Hilang")
+                {
+                    query = "SELECT * FROM vw_laporan_hilang_lengkap WHERE no_stpl LIKE @key OR nama_pelapor LIKE @key OR jenis_barang LIKE @key";
+                }
+                else
+                {
+                    query = "SELECT * FROM vw_barang_temuan_lengkap WHERE id_temuan LIKE @key OR nama_penemu LIKE @key OR jenis_barang LIKE @key";
+                }
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@key", "%" + keyword + "%");
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
-                dt.Load(reader);
+                adapter.Fill(dt);
 
-                dgvGudang.DataSource = dt;
+                bindingSourceGudang.DataSource = dt;
+                dgvGudang.DataSource = bindingSourceGudang;
             }
-            catch (Exception ex) { MessageBox.Show("Error Tampil Data: " + ex.Message); }
-            finally { conn.Close(); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal memuat data dari VIEW: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void cmbKategori_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,29 +85,23 @@ namespace STPLapp
             {
                 cmbStatus.Items.Add("Dicari");
                 cmbStatus.Items.Add("Tersimpan");
-                lblId.Text = "-";
-                lblNik.Text = "-";
-                lblNama.Text = "-";
             }
             else
             {
                 cmbStatus.Items.Add("Tersimpan");
                 cmbStatus.Items.Add("Dikembalikan");
-                
-                lblId.Text = "-";
-                lblNik.Text = "-";
-                lblNama.Text = "-";
             }
 
             BersihkanForm();
             TampilData(); 
         }
+
         private void dgvGudang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvGudang.Rows[e.RowIndex];
-                idTerpilih = row.Cells[0].Value.ToString();
+                idTerpilih = row.Cells[0].Value.ToString(); 
 
                 if (cmbKategori.Text == "Laporan Hilang")
                 {
@@ -112,17 +134,14 @@ namespace STPLapp
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            // --- 1. VALIDASI KOSONG (Syarat Ujian Poin F) ---
             if (idTerpilih == "") { MessageBox.Show("Pilih data di tabel dulu!"); return; }
 
-            // Mengecek apakah TextBox Jenis, Lokasi, dan ComboBox Status kosong
             if (txtJenis.Text == "" || txtLokasi.Text == "" || cmbStatus.Text == "")
             {
                 MessageBox.Show("Field penting (Jenis Barang, Lokasi, Status) tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // --- 2. KONFIRMASI SEBELUM UBAH DATA (Syarat Ujian Poin F) ---
             DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin mengubah detail data ini?", "Konfirmasi Ubah", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialog == DialogResult.Yes)
@@ -149,7 +168,7 @@ namespace STPLapp
                     cmd.Parameters.AddWithValue("@stat", cmbStatus.Text);
                     cmd.Parameters.AddWithValue("@id", idTerpilih);
 
-                    cmd.ExecuteNonQuery(); // Eksekusi UPDATE (Syarat Ujian Poin D)
+                    cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     BersihkanForm();
@@ -159,6 +178,7 @@ namespace STPLapp
                 finally { conn.Close(); }
             }
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (idTerpilih == "") { MessageBox.Show("Pilih data yang mau dihapus!"); return; }
@@ -187,12 +207,10 @@ namespace STPLapp
                 finally { conn.Close(); }
             }
         }
+
         private void btnSearch_Click(object sender, EventArgs e) { TampilData(txtSearch.Text); }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            TampilData(txtSearch.Text);
-        }
+        private void btnRefresh_Click(object sender, EventArgs e) { TampilData(txtSearch.Text); }
 
         private void BersihkanForm()
         {
@@ -211,15 +229,14 @@ namespace STPLapp
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            FormMenu menu = new FormMenu();
+            FormMenu menu = new FormMenu(nrpPetugas);
             menu.Show();
             this.Hide();
         }
 
         private void FormSearch_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormMenu menu = new FormMenu();
-            menu.Show();
+            Application.Exit();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
