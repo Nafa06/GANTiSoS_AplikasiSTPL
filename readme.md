@@ -56,3 +56,12 @@ Sistem pencatatan Surat Tanda Penerimaan Laporan (STPL) untuk Laporan Kehilangan
 ![Input](Assets/InputLostFill.png)
 ![Search](Assets/SearchDeleteConfirmation.png)
 ![Menu](Assets/MenuLogoutNotice.png)
+
+## Skenario Pengujian SQL Injection
+
+**UNION-Based SQL Injection** pada fitur pencarian di **Form Search**.
+
+### 1. Kode Program yang Rentan (Vulnerable Code)
+Pada tombol simulasi injeksi di `FormSearch.cs`, input string dari pengguna langsung digabungkan ke dalam perintah query SQL String Concatenation tanpa melalui proses sanitasi data ataupun Parameterized Query:
+```csharp
+string query = "SELECT * FROM vw_laporan_hilang_lengkap WHERE no_stpl = '" + payloadSQLi + "' OR nama_pelapor = '" + payloadSQLi + "'";
