@@ -88,7 +88,14 @@ namespace STPLapp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Database: " + ex.Message);
+                DialogResult result = MessageBox.Show("Koneksi database bermasalah: " + ex.Message + "\n\nApakah Anda ingin membuka Pengaturan Database?", "Error Koneksi Database", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                if (result == DialogResult.Yes)
+                {
+                    using (FormDbSettings settingsForm = new FormDbSettings())
+                    {
+                        settingsForm.ShowDialog();
+                    }
+                }
             }
             finally
             {
