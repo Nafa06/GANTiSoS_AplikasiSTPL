@@ -55,6 +55,7 @@
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Simpan";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label1
             // 
@@ -121,12 +122,13 @@
             this.btnTest.TabIndex = 1;
             this.btnTest.Text = "Tes Koneksi";
             this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
-            // Form1
+            // FormDbSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(320, 266);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label3);
@@ -137,8 +139,8 @@
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtHost);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormDbSettings";
+            this.Text = "Database Settings";
             this.ResumeLayout(false);
             this.PerformLayout();
 

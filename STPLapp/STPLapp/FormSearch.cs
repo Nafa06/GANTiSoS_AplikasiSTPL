@@ -106,6 +106,7 @@ namespace STPLapp
                     bindingSourceGudang.DataSource = dt;
                     dgvGudang.DataSource = bindingSourceGudang;
                     bindingNavigator1.BindingSource = bindingSourceGudang;
+                    dgvGudang.Columns["jenis_barang"].HeaderText = "Nama Barang";
                 }
                 catch (Exception ex)
                 {

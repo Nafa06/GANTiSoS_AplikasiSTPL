@@ -239,9 +239,9 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(8, 93);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(86, 16);
+            this.label15.Size = new System.Drawing.Size(91, 16);
             this.label15.TabIndex = 5;
-            this.label15.Text = "Jenis Barang";
+            this.label15.Text = "Nama Barang";
             // 
             // txtJenis
             // 
@@ -388,9 +388,9 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(10, 93);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(86, 16);
+            this.label16.Size = new System.Drawing.Size(91, 16);
             this.label16.TabIndex = 21;
-            this.label16.Text = "Jenis Barang";
+            this.label16.Text = "Nama Barang";
             // 
             // label11
             // 

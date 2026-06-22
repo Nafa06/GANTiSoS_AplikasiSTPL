@@ -197,9 +197,9 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(957, 165);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(86, 16);
+            this.label15.Size = new System.Drawing.Size(91, 16);
             this.label15.TabIndex = 20;
-            this.label15.Text = "Jenis Barang";
+            this.label15.Text = "Nama Barang";
             // 
             // label4
             // 
@@ -363,7 +363,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1320, 27);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1320, 31);
             this.bindingNavigator1.TabIndex = 30;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -425,7 +425,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorDeleteItem
