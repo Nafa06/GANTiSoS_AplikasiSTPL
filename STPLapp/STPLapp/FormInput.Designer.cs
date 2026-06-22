@@ -76,7 +76,7 @@
             this.btnSimpan.Location = new System.Drawing.Point(134, 322);
             this.btnSimpan.Name = "btnSimpan";
             this.btnSimpan.Size = new System.Drawing.Size(173, 31);
-            this.btnSimpan.TabIndex = 8;
+            this.btnSimpan.TabIndex = 9;
             this.btnSimpan.Text = "Simpan dan Cetak STPL";
             this.btnSimpan.UseVisualStyleBackColor = true;
             this.btnSimpan.Click += new System.EventHandler(this.btnSimpan_Click);
@@ -86,7 +86,7 @@
             this.txtNrp.Location = new System.Drawing.Point(117, 294);
             this.txtNrp.Name = "txtNrp";
             this.txtNrp.Size = new System.Drawing.Size(190, 22);
-            this.txtNrp.TabIndex = 7;
+            this.txtNrp.TabIndex = 8;
             // 
             // txtTkp
             // 
@@ -94,7 +94,7 @@
             this.txtTkp.Multiline = true;
             this.txtTkp.Name = "txtTkp";
             this.txtTkp.Size = new System.Drawing.Size(190, 57);
-            this.txtTkp.TabIndex = 6;
+            this.txtTkp.TabIndex = 7;
             // 
             // txtCiri
             // 
@@ -102,28 +102,28 @@
             this.txtCiri.Multiline = true;
             this.txtCiri.Name = "txtCiri";
             this.txtCiri.Size = new System.Drawing.Size(190, 79);
-            this.txtCiri.TabIndex = 5;
+            this.txtCiri.TabIndex = 6;
             // 
             // txtNama
             // 
             this.txtNama.Location = new System.Drawing.Point(117, 62);
             this.txtNama.Name = "txtNama";
             this.txtNama.Size = new System.Drawing.Size(190, 22);
-            this.txtNama.TabIndex = 2;
+            this.txtNama.TabIndex = 3;
             // 
             // txtNik
             // 
             this.txtNik.Location = new System.Drawing.Point(117, 34);
             this.txtNik.Name = "txtNik";
             this.txtNik.Size = new System.Drawing.Size(190, 22);
-            this.txtNik.TabIndex = 1;
+            this.txtNik.TabIndex = 2;
             // 
             // txtStpl
             // 
             this.txtStpl.Location = new System.Drawing.Point(117, 6);
             this.txtStpl.Name = "txtStpl";
             this.txtStpl.Size = new System.Drawing.Size(190, 22);
-            this.txtStpl.TabIndex = 0;
+            this.txtStpl.TabIndex = 1;
             // 
             // label4
             // 
@@ -197,7 +197,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(352, 384);
-            this.tabControl1.TabIndex = 19;
+            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -232,7 +232,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(117, 118);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(114, 22);
-            this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker1.TabIndex = 5;
             // 
             // label15
             // 
@@ -248,7 +248,7 @@
             this.txtJenis.Location = new System.Drawing.Point(117, 90);
             this.txtJenis.Name = "txtJenis";
             this.txtJenis.Size = new System.Drawing.Size(190, 22);
-            this.txtJenis.TabIndex = 3;
+            this.txtJenis.TabIndex = 4;
             // 
             // tabPage2
             // 
@@ -423,7 +423,7 @@
             this.btnBack.Location = new System.Drawing.Point(267, 420);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(90, 31);
-            this.btnBack.TabIndex = 9;
+            this.btnBack.TabIndex = 10;
             this.btnBack.Text = "Kembali";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);

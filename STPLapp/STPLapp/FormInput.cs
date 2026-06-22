@@ -15,11 +15,30 @@ namespace STPLapp
     {
         string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; Password = 21914113";
         private string nrpPetugas;
+
         public FormInput(string nrp)
         {
             InitializeComponent();
             this.nrpPetugas = nrp;
             this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        public void simpanLog(string message)
+        {
+            using (MySqlConnection connLog = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connLog.Open();
+                    MySqlCommand cmd = new MySqlCommand("sp_LogMessage", connLog);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@psn", message);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                }
+            }
         }
 
         private void FormInput_Load(object sender, EventArgs e)
@@ -69,7 +88,6 @@ namespace STPLapp
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand("SP_InsertLaporanHilang", conn);
-
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@p_no_stpl", txtStpl.Text);
@@ -90,9 +108,15 @@ namespace STPLapp
                 formMenu.Show();
                 this.Hide();
             }
+            catch (MySqlException ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("SQL Error: " + ex.Message, "Error Database (MySQL)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal menyimpan data via SP: " + ex.Message, "Error Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                simpanLog(ex.Message);
+                MessageBox.Show("Gagal menyimpan data via SP: " + ex.Message, "General Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -152,9 +176,15 @@ namespace STPLapp
                 formMenu.Show();
                 this.Hide();
             }
+            catch (MySqlException ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("SQL Error: " + ex.Message, "Error Database (MySQL)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal menyimpan data: " + ex.Message, "Error Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                simpanLog(ex.Message);
+                MessageBox.Show("Gagal menyimpan data: " + ex.Message, "General Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

@@ -32,6 +32,31 @@ namespace STPLapp
         private void FormMenu_Load(object sender, EventArgs e)
         {
             HitungTotalData();
+            simpanLogSesi(nrpPetugas, "LOGIN");
+        }
+
+        public void simpanLogSesi(string nrp, string aktivitas)
+        {
+            string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; Password = 21914113";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand("sp_LogSesiPetugas", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@p_nrp", nrp);
+                    cmd.Parameters.AddWithValue("@p_aktivitas", aktivitas);
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Gagal mencatat log sesi: " + ex.Message);
+                }
+            }
         }
 
         private void HitungTotalData()
@@ -83,6 +108,7 @@ namespace STPLapp
 
             if (dialog == DialogResult.Yes)
             {
+                simpanLogSesi(nrpPetugas, "LOGOUT");
                 FormLogin formLogin = new FormLogin();
                 formLogin.Show();
                 this.Hide();

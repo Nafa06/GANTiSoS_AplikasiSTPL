@@ -13,8 +13,7 @@ namespace STPLapp
 {
     public partial class FormLogin : Form
     {
-        string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; " +
-            "Password = 21914113";
+        string connectionString => DatabaseHelper.ConnectionString;
 
         public FormLogin()
         {
@@ -36,7 +35,14 @@ namespace STPLapp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Koneksi ke database gagal.\nDetail: " + ex.Message, "Status Koneksi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show("Koneksi database bermasalah: " + ex.Message + "\n\nApakah Anda ingin membuka Pengaturan Database?","Error Koneksi Database",MessageBoxButtons.YesNo,MessageBoxIcon.Error);
+                if (result == DialogResult.Yes)
+                {
+                    using (FormDbSettings settingsForm = new FormDbSettings())
+                    {
+                        settingsForm.ShowDialog();
+                    }
+                }
             }
             finally
             {

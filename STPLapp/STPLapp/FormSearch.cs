@@ -15,7 +15,7 @@ namespace STPLapp
     {
         string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; Password = 21914113";
         string idTerpilih = "";
-        private string nrpPetugas; 
+        private string nrpPetugas;
 
         private BindingSource bindingSourceGudang = new BindingSource();
 
@@ -29,6 +29,22 @@ namespace STPLapp
         public FormSearch()
         {
             InitializeComponent();
+        }
+
+        public void simpanLog(string message)
+        {
+            using (MySqlConnection connLog = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connLog.Open();
+                    MySqlCommand cmd = new MySqlCommand("sp_LogMessage", connLog);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@psn", message);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception) { /* Fail-safe */ }
+            }
         }
 
         private void FormSearch_Load(object sender, EventArgs e)
@@ -68,8 +84,14 @@ namespace STPLapp
                 dgvGudang.DataSource = bindingSourceGudang;
                 bindingNavigator1.BindingSource = bindingSourceGudang;
             }
+            catch (MySqlException ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("SQL Error memuat data: " + ex.Message, "Error Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
+                simpanLog(ex.Message);
                 MessageBox.Show("Gagal memuat data dari VIEW: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -94,7 +116,7 @@ namespace STPLapp
             }
 
             BersihkanForm();
-            TampilData(); 
+            TampilData();
         }
 
         private void dgvGudang_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -102,7 +124,7 @@ namespace STPLapp
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvGudang.Rows[e.RowIndex];
-                idTerpilih = row.Cells[0].Value.ToString(); 
+                idTerpilih = row.Cells[0].Value.ToString();
 
                 if (cmbKategori.Text == "Laporan Hilang")
                 {
@@ -143,9 +165,12 @@ namespace STPLapp
                 try
                 {
                     conn.Open();
+
+                    MySqlCommand setSafeUpdates = new MySqlCommand("SET SQL_SAFE_UPDATES = 1;", conn);
+                    setSafeUpdates.ExecuteNonQuery();
+
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandType = CommandType.StoredProcedure;
 
                     if (cmbKategori.Text == "Laporan Hilang")
                     {
@@ -175,7 +200,23 @@ namespace STPLapp
                     BersihkanForm();
                     TampilData();
                 }
-                catch (Exception ex) { MessageBox.Show("Gagal update via SP: " + ex.Message); }
+                catch (MySqlException ex)
+                {
+                    simpanLog(ex.Message);
+                    if (ex.Message.ToLower().Contains("safe"))
+                    {
+                        MessageBox.Show("SQL Error: Unsafe UPDATE operation not allowed.", "Sistem Keamanan Database", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gagal update database: " + ex.Message, "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    simpanLog(ex.Message);
+                    MessageBox.Show("Gagal update via SP: " + ex.Message, "General Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 finally { conn.Close(); }
             }
         }
@@ -212,7 +253,12 @@ namespace STPLapp
                     BersihkanForm();
                     TampilData();
                 }
-                catch (Exception ex) { MessageBox.Show("Gagal hapus: " + ex.Message); }
+                catch (MySqlException ex)
+                {
+                    simpanLog(ex.Message);
+                    MessageBox.Show("SQL Error saat menghapus: " + ex.Message, "Error Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex) { simpanLog(ex.Message); MessageBox.Show("Gagal hapus: " + ex.Message); }
                 finally { conn.Close(); }
             }
         }
@@ -256,16 +302,13 @@ namespace STPLapp
         private void btnTest_Click(object sender, EventArgs e)
         {
             cmbKategori.Text = "Laporan Hilang";
-
             string payloadSQLi = "xyz' UNION SELECT nrp, nama_petugas, pangkat, password_petugas, 'TERINJEKSI', 'LOKASI EXPLOIT', NOW(), 'Tersimpan', nrp, nama_petugas FROM tb_petugas -- ";
-
             txtSearch.Text = payloadSQLi;
 
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
                 conn.Open();
-
                 string query = "SELECT * FROM vw_laporan_hilang_lengkap WHERE no_stpl LIKE '%" + payloadSQLi + "%' OR nama_pelapor LIKE '%" + payloadSQLi + "%'";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -276,11 +319,17 @@ namespace STPLapp
                 bindingSourceGudang.DataSource = dt;
                 dgvGudang.DataSource = bindingSourceGudang;
 
-                MessageBox.Show("s̶͕̺̐̈́ͅy̵͙̰̤̣̑͒̈́̂̓̽̇͘͘s̸̢̲͈̱̦̫̺͕͚̥̥̗̤̣̥͘t̴̢̨̢̖͙͕̥̹͕̥̣̘͕͈̓͋̅̇̔̏̀́͘e̶̡͚̖̺̟̺̭̠̰͑̍͌̅̀̒̈́̉ḿ̸̛̮̰͙̙̣̝̣̣̯̖͓̘̭̿͜ ̵̢̭̞̺̱͇̖̑̀̓̈́̅̄̉̍͗͝ḣ̶̼̤̝̠͈̗̙̩͖͕͓̉̈́̆̾̎̈́̀̂ä̴̧͎͚̞͙̻̙͇̙́̇̄͊c̶̡̬̖̘̟̪̣̾͛́̾́̐͐̉̅̅̄̕͘ḳ̶̨̘͉̤̮̙̙͒͑̄͒͛͋͑̿̈̂̐͑͜͜͝è̴̡̡̺͉̣͆͛̽̚d̴̡͈̥̈̆͗̎̌̇̈́͊͒̒̕͝ͅ\n\ns̶͕̺̐̈́ͅy̵͙̰̤̣̑͒̈́̂̓̽̇͘͘s̸̢̲͈̱̦̫̺͕͚̥̥̗̤̣̥͘t̴̢̨̢̖͙͕̥̹͕̥̣̘͕͈̓͋̅̇̔̏̀́͘e̶̡͚̖̺̟̺̭̠̰͑̍͌̅̀̒̈́̉ḿ̸̛̮̰͙̙̣̝̣̣̯̖͓̘̭̿͜ ̵̢̭̞̺̱͇̖̑̀̓̈́̅̄̉̍͗͝ḣ̶̼̤̝̠͈̗̙̩͖͕͓̉̈́̆̾̎̈́̀̂ä̴̧͎͚̞͙̻̙͇̙́̇̄͊c̶̡̬̖̘̟̪̣̾͛́̾́̐͐̉̅̅̄̕͘ḳ̶̨̘͉̤̮̙̙͒͑̄͒͛͋͑̿̈̂̐͑͜͜͝è̴̡̡̺͉̣͆͛̽̚d̴̡͈̥̈̆͗̎̌̇̈́͊͒̒̕͝ͅ",
+                MessageBox.Show("s̶͕̺̐̈́ͅy̵͙̰̤̣̑͒̈́̂̓̽̇͘͘s̸̢̲͈̱̦̫̺͕͚̥̥̗̤̣̥͘t̴̢̨̢̖͙͕̥̹͕̥̣̘͕͈̓͋̅̇̔̏̀́͘e̶̡͚̖̺̟̺̭̠̰͑̍͌̅̀̒̈́̉ḿ̸̛̮̰͙̙̣̝̣̣̯̖͓̘̭̿͜ ̵̢̭̞̺̱͇̖̑̀̓̈́̅̄̉̍͗͝ḣ̶̼̤̝̠͈̗̙̩͖͕͓̉̈́̆̾̎̈́̀̂ä̴̧͎͚̞͙̻̙͇̙́̇̄͊c̶̡̬̖̘̟̪̣̾͛́̾́̐͐̉̅̅̄̕͘ḳ̶̨̘͉̤̮̙̙͒͑̄͒͛͋͑̿̈̂̐͑͜͜͝è̴̡̡̺͉̣͆͛̽̚d̴̡͈̥̈̆͗̎̌̇̈́͊͒̒̕͝ͅ\n\ns̶͕̺̐̈́ͅy̵͙̰̤̣̑͒̈́̂̓̽̇͘͘s̸̢̲͈̱̦̫̺͕͚̥̥̗̤̣̥͘t̴̢̨̢̖͙͕̥̹͕̥̣̘͕͈̓͋̅̇̔̏̀́͘e̶̡͚̖̺̟̺̭̠̰͑̍͌̅̀̒̈́̉ḿ̸̛̮̰͙̙̣̝̣̣̯̖͓̘̭̿͜ ̵̢̭̞̺̱͇̖̑̀̓̈́̅̄̉̍͗͝ḣ̶̼̤̝̠͈̗̙̩͖͕͓̉̈́̆̾̎̈́̀̂ä̴̧͎͚̞͙̻̙͇̙́̇̄͊c̶̡̬̖̘̟̪̣̾͛́̾́̐͐̉̅̅̄̕͘ḳ̶̨̘͉̤̮̙̙͒͑̄͒͛͋͑̿̈̂̐͑͜͜͝è̴̡̡̺͉̣͆͛̽̚d̴̡͈̥̈̆͗̎̌̇̈́͊͒̒̕͝ͅ",
                                 "Exploit Sukses", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (MySqlException ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("SQL Error saat simulasi: " + ex.Message, "Sistem Proteksi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
+                simpanLog(ex.Message);
                 MessageBox.Show("Error saat simulasi: " + ex.Message, "Sistem Proteksi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -292,11 +341,8 @@ namespace STPLapp
         private void btnReset_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
-
             TampilData("");
-
             MessageBox.Show("Data berhasil di reset.", "System Restored", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
     }
 }
