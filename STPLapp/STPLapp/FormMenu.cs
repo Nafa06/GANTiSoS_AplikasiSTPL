@@ -8,13 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace STPLapp
 {
     public partial class FormMenu : Form
     {
-        string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; " +
-            "Password = 21914113";
+        string connectionString => DatabaseHelper.ConnectionString;
 
         private string nrpPetugas;
 
@@ -32,13 +32,14 @@ namespace STPLapp
         private void FormMenu_Load(object sender, EventArgs e)
         {
             HitungTotalData();
-            simpanLogSesi(nrpPetugas, "LOGIN");
+            if (!string.IsNullOrEmpty(nrpPetugas))
+            {
+                simpanLogSesi(nrpPetugas, "LOGIN");
+            }
         }
 
         public void simpanLogSesi(string nrp, string aktivitas)
         {
-            string connectionString = "Server = localhost; database = SI_STPL_DB; UID = root; Password = 21914113";
-
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
@@ -46,10 +47,8 @@ namespace STPLapp
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand("sp_LogSesiPetugas", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@p_nrp", nrp);
                     cmd.Parameters.AddWithValue("@p_aktivitas", aktivitas);
-
                     cmd.ExecuteNonQuery();
                 }
                 catch (Exception ex)
@@ -61,31 +60,57 @@ namespace STPLapp
 
         private void HitungTotalData()
         {
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
-                conn.Open();
-
-                string queryHilang = "SELECT COUNT(*) FROM tb_laporan_hilang";
-                MySqlCommand cmdHilang = new MySqlCommand(queryHilang, conn);
-
-                int totalHilang = Convert.ToInt32(cmdHilang.ExecuteScalar());
-                lblHilang.Text = "Total Laporan Hilang: " + totalHilang.ToString();
-
-                string queryTemuan = "SELECT COUNT(*) FROM tb_barang_temuan";
-                MySqlCommand cmdTemuan = new MySqlCommand(queryTemuan, conn);
-
-                int totalTemuan = Convert.ToInt32(cmdTemuan.ExecuteScalar());
-                lblTemu.Text = "Total Barang Temuan: " + totalTemuan.ToString();
+                try
+                {
+                    conn.Open();
+                    int totalHilang = Convert.ToInt32(new MySqlCommand("SELECT COUNT(*) FROM tb_laporan_hilang", conn).ExecuteScalar());
+                    lblHilang.Text = "Total Laporan Hilang: " + totalHilang.ToString();
+                    int totalTemuan = Convert.ToInt32(new MySqlCommand("SELECT COUNT(*) FROM tb_barang_temuan", conn).ExecuteScalar());
+                    lblTemu.Text = "Total Barang Temuan: " + totalTemuan.ToString();
+                    RenderChart(totalHilang, totalTemuan);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Gagal memuat statistik: " + ex.Message);
+                }
             }
-            catch (Exception ex)
+        }
+
+        private void RenderChart(int totalHilang, int totalTemu)
+        {
+            Control oldChart = this.Controls["chartStats"];
+            if (oldChart != null)
             {
-                MessageBox.Show("Gagal memuat statistik: " + ex.Message);
+                this.Controls.Remove(oldChart);
+                oldChart.Dispose();
             }
-            finally
+            this.Size = new Size(770, 340);
+            Chart chartStats = new Chart();
+            chartStats.Name = "chartStats";
+            chartStats.Location = new Point(360, 20);
+            chartStats.Size = new Size(380, 250);
+            ChartArea chartArea = new ChartArea("MainArea");
+            chartStats.ChartAreas.Add(chartArea);
+            Legend legend = new Legend("MainLegend");
+            legend.Docking = Docking.Bottom;
+            chartStats.Legends.Add(legend);
+            Series series = new Series("Statistik")
             {
-                conn.Close();
-            }
+                ChartArea = "MainArea",
+                ChartType = SeriesChartType.Pie,
+                Legend = "MainLegend",
+                IsValueShownAsLabel = true
+            };
+            series.Points.AddXY($"Laporan Hilang ({totalHilang})", totalHilang);
+            series.Points.AddXY($"Barang Temuan ({totalTemu})", totalTemu);
+            series.Points[0].Color = Color.FromArgb(239, 83, 80);
+            series.Points[1].Color = Color.FromArgb(102, 187, 106);
+            chartStats.Series.Add(series);
+            Title title = new Title("Grafik Perbandingan Data STPL", Docking.Top, new Font("Segoe UI", 11, FontStyle.Bold), Color.FromArgb(33, 33, 33));
+            chartStats.Titles.Add(title);
+            this.Controls.Add(chartStats);
         }
 
         private void btnInput_Click(object sender, EventArgs e)
@@ -97,7 +122,7 @@ namespace STPLapp
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            FormSearch FormSearch = new FormSearch();
+            FormSearch FormSearch = new FormSearch(nrpPetugas);
             FormSearch.Show();
             this.Hide();
         }

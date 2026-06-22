@@ -54,7 +54,66 @@ namespace STPLapp
 
             txtNrp.ReadOnly = true;
             txtNrpNemu.ReadOnly = true;
+
+            txtStpl.Text = GenerateNextNoStpl();
+            txtTemuan.Text = GenerateNextIdTemuan();
+            txtStpl.ReadOnly = true;
+            txtTemuan.ReadOnly = true;
         }
+
+        private string GenerateNextNoStpl()
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT no_stpl FROM tb_laporan_hilang WHERE no_stpl LIKE 'L-%' ORDER BY CAST(SUBSTRING(no_stpl, 3) AS UNSIGNED) DESC LIMIT 1";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    object val = cmd.ExecuteScalar();
+                    if (val != null)
+                    {
+                        string lastId = val.ToString();
+                        string numStr = lastId.Substring(2);
+                        int num;
+                        if (int.TryParse(numStr, out num))
+                        {
+                            return "L-" + (num + 1).ToString("D3");
+                        }
+                    }
+                }
+                catch { }
+            }
+            return "L-001";
+        }
+
+        private string GenerateNextIdTemuan()
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT id_temuan FROM tb_barang_temuan WHERE id_temuan LIKE 'F-%' ORDER BY CAST(SUBSTRING(id_temuan, 3) AS UNSIGNED) DESC LIMIT 1";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    object val = cmd.ExecuteScalar();
+                    if (val != null)
+                    {
+                        string lastId = val.ToString();
+                        string numStr = lastId.Substring(2);
+                        int num;
+                        if (int.TryParse(numStr, out num))
+                        {
+                            return "F-" + (num + 1).ToString("D3");
+                        }
+                    }
+                }
+                catch { }
+            }
+            return "F-001";
+        }
+
+
 
         private void btnSimpan_Click(object sender, EventArgs e)
         {
@@ -76,9 +135,9 @@ namespace STPLapp
                 return;
             }
 
-            if (txtNama.Text.Any(char.IsDigit))
+            if (txtNama.Text.Any(ch => !char.IsLetter(ch) && !char.IsWhiteSpace(ch) && ch != '.' && ch != '\'' && ch != ','))
             {
-                MessageBox.Show("Nama Pelapor tidak boleh mengandung angka!", "Input Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nama tidak boleh mengandung angka atau simbol/karakter spesial!", "Input Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -144,9 +203,9 @@ namespace STPLapp
                 return;
             }
 
-            if (txtPenemu.Text.Any(char.IsDigit))
+            if (txtPenemu.Text.Any(ch => !char.IsLetter(ch) && !char.IsWhiteSpace(ch) && ch != '.' && ch != '\'' && ch != ','))
             {
-                MessageBox.Show("Nama Penemu tidak boleh mengandung angka!", "Input Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nama tidak boleh mengandung angka atau simbol/karakter spesial!", "Input Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
