@@ -495,9 +495,9 @@
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(124, 23);
             this.btnImportExcel.TabIndex = 2;
-            this.btnImportExcel.Text = "Import ke Excel";
+            this.btnImportExcel.Text = "Import dari Excel";
             this.btnImportExcel.UseVisualStyleBackColor = true;
-            this.btnImportExcel.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
             // 
             // btnExportReport
             // 
@@ -507,7 +507,7 @@
             this.btnExportReport.TabIndex = 3;
             this.btnExportReport.Text = "Cetak Report";
             this.btnExportReport.UseVisualStyleBackColor = true;
-            this.btnExportReport.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnExportReport.Click += new System.EventHandler(this.btnExportReport_Click);
             // 
             // FormSearch
             // 
